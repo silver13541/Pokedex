@@ -10,7 +10,12 @@ export const FooterContent = styled.footer`
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
-  color:#212121;
+  color: #212121;
 `;
 export const FooterHeart = styled.footer``;
-export const FooterLink = styled.footer``;
+export const FooterLink = styled.footer`
+  &:hover {
+    cursor: pointer;
+    border-bottom: 1px solid black;
+  }
+`;

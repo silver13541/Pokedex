@@ -52,4 +52,7 @@ export const TextButton = styled.button`
   font-weight: bold;
   font-size: 23px;
   line-height: 27px;
+  &:hover{  
+    cursor:pointer;
+  }
 `;

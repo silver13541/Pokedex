@@ -14,9 +14,10 @@ export const HeaderContent = styled.div`
 `;
 
 export const HeaderLogo = styled.div`
-&:hover{
-  cursor:pointer;
-}`;
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 export const HeaderNavbar = styled.nav`
   ul {
@@ -33,13 +34,11 @@ export const HeaderNavbar = styled.nav`
     margin-right: 54px;
     display:flex;
     align-items:center;
-    &:hover{
+    &:hover{  
       cursor:pointer;
       border-bottom: 1px solid black;
     }
   }
 `;
 
-export const HeaderToggle = styled.div`
-
-`
+export const HeaderToggle = styled.div``;

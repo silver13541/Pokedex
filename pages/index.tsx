@@ -11,8 +11,10 @@ import {
 } from "../styledComponents/Home";
 import pokemon from "../images/pokemonHome.png";
 import { Footer } from "../components/footer";
+import { useRouter } from "next/dist/client/router";
 
 const Home = () => {
+  const router = useRouter();
   return (
     <>
       <HomeContainer>
@@ -29,7 +31,7 @@ const Home = () => {
               You can know the type of Pokemon, its strengths, disadvantages and
               abilities
             </TextParagraph>
-            <TextButton>See pokemons</TextButton>
+            <TextButton onClick={() => router.push('/pokedex')}>See pokemons</TextButton>
           </HomeTextContainer>
           <HomePicture>
             <Image src={pokemon} alt="pokemon" />
