@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const PokedexContainer = styled.main`
-  padding: 73px 158px 32px 158px;
+  padding: 73px 158px 0 158px;
   background: linear-gradient(180deg, #ffffff 30.32%, #f5f5f5 100%);
 `;
 
@@ -57,5 +57,21 @@ export const PokedexGrid = styled.div`
   flex-wrap: wrap;
   margin-top: 53px;
   width: 100%;
+  margin-bottom: -2%;
 `;
 
+export const PokedexPagesContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const PokedexPages = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 4%;
+  margin-bottom: 3%;
+
+  Image{
+    background: #212121;
+  }
+`;

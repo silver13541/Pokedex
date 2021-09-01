@@ -9,14 +9,18 @@ import {
   PokedexFilters,
   PokedexGrid,
   PokedexInput,
+  PokedexPages,
+  PokedexPagesContainer,
   PokedexSelect,
   PokedexTitle,
 } from "../styledComponents/Pokedex";
+import pageButton from "../images/EllipsePage.svg";
+import Image from "next/image";
 
 const Pokedex = () => {
   const [allPokemons, setAllPokemons] = useState([]);
   const [loadMore, setLoadMore] = useState(
-    "https://pokeapi.co/api/v2/pokemon?limit=9"
+    "https://pokeapi.co/api/v2/pokemon?limit=45"
   );
   console.log(allPokemons);
 
@@ -84,12 +88,19 @@ const Pokedex = () => {
             name={pokemon.name}
             attack={pokemon.stats[1].base_stat}
             defense={pokemon.stats[2].base_stat}
-            types= {pokemon.types}
-            image = {pokemon.sprites.other.dream_world.front_default}
+            types={pokemon.types}
+            image={pokemon.sprites.other.dream_world.front_default}
             key={index}
           />
         ))}
       </PokedexGrid>
+      <PokedexPagesContainer>
+        <PokedexPages>
+          <Image src={pageButton} />
+          <Image src={pageButton} />
+          <Image src={pageButton} />
+        </PokedexPages>
+      </PokedexPagesContainer>
       <Footer />
     </PokedexContainer>
   );

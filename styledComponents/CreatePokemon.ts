@@ -22,6 +22,7 @@ export const CreatePokemonImage = styled.div`
   justify-content: center;
   display: flex;
   overflow: hidden;
+  border-radius: 0px 8px 8px 0px;
   img {
     width: 70%;
   }
@@ -103,7 +104,6 @@ export const CreatePokemonTypes = styled.div`
 `;
 
 export const TypesItem = styled.div`
-  background: #73d677;
   box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.18);
   border-radius: 11px;
   display: flex;
