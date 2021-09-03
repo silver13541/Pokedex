@@ -28,7 +28,7 @@ export const PokedexInput = styled.input`
   box-shadow: 4px 4px 16px rgb(1 28 64 / 20%);
 `;
 
-export const PokedexFilters = styled.div`
+export const PokedexFiltersContainer = styled.div`
   display: flex;
   padding-left: 4.5%;
   width: 50%;
@@ -37,19 +37,41 @@ export const PokedexFilters = styled.div`
 
 export const PokedexFilter = styled.div``;
 
-export const PokedexSelect = styled.select`
+export const FilterButton = styled.button`
   background: #f2f2f2;
   width: 135px;
   height: 21px;
   border: 0;
   box-shadow: 2px 2px 2px rgba(33, 33, 33, 0.1);
   border-radius: 4px;
-  option {
-    text-align: center;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+`;
+
+export const TypeContainer = styled.div`
+  display: grid;
+  width: 139%;
+  margin-top: 5%;
+  grid-template-columns: 1fr 1fr 1fr;
+  background: #f2f2f2;
+  box-shadow: 4px 4px 8px rgb(1 28 64 / 20%);
+  border-radius: 8px;
+  padding: 18px;
+
+  p {
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 0;
   }
 `;
 
-export const PokedexFilterContainer = styled.div``;
+export const TypeContainerRow = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 export const PokedexGrid = styled.div`
   display: flex;
@@ -63,15 +85,12 @@ export const PokedexGrid = styled.div`
 export const PokedexPagesContainer = styled.div`
   display: flex;
   justify-content: center;
+  padding: 0 44%;
 `;
 
 export const PokedexPages = styled.div`
   display: flex;
-  justify-content: space-between;
-  width: 4%;
+  justify-content: space-evenly;
+  width: 100%;
   margin-bottom: 3%;
-
-  Image{
-    background: #212121;
-  }
 `;

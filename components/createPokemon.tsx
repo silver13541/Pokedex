@@ -25,8 +25,23 @@ export const CreatePokemon = ({ name, attack, defense, types, image }) => {
     case "water":
       color = "#5BC7FA";
       break;
+    case "poison":
+      color = "#9023a1";
+      break;
+    case "electric":
+      color = "#eaff00";
+      break;
+    case "bug":
+      color = "#52ff03";
+      break;
+    case "ground":
+      color = "#f0ad05";
+      break;
+    case "normal":
+      color = "#b7b8b0";
+      break;
     default:
-      color = "#F2CB07";
+      color = "b7b8b0";
   }
 
   return (
@@ -58,26 +73,62 @@ export const CreatePokemon = ({ name, attack, defense, types, image }) => {
         <CreatePokemonTypes>
           {types.map((type) => {
             switch (type.type.name) {
-              case "grass": return (
-                <TypesItem style={{ backgroundColor: "#64D368" }}>
-                  {type.type.name.charAt(0).toUpperCase() +
-                    type.type.name.slice(1)}
-                </TypesItem> )
-              case "fire": return (
-                <TypesItem style={{ backgroundColor: "#B33327" }}>
-                  {type.type.name.charAt(0).toUpperCase() +
-                    type.type.name.slice(1)}
-                </TypesItem> )
-              case "water": return (
-                <TypesItem style={{ backgroundColor: "#5BC7FA" }}>
-                  {type.type.name.charAt(0).toUpperCase() +
-                    type.type.name.slice(1)}
-                </TypesItem> )
-              default: return (
-                <TypesItem style={{ backgroundColor: "#F2CB07" }}>
-                  {type.type.name.charAt(0).toUpperCase() +
-                    type.type.name.slice(1)}
-                </TypesItem> )
+              case "grass":
+                return (
+                  <TypesItem style={{ backgroundColor: "#64D368" }}>
+                    {type.type.name.charAt(0).toUpperCase() +
+                      type.type.name.slice(1)}
+                  </TypesItem>
+                );
+              case "fire":
+                return (
+                  <TypesItem style={{ backgroundColor: "#B33327" }}>
+                    {type.type.name.charAt(0).toUpperCase() +
+                      type.type.name.slice(1)}
+                  </TypesItem>
+                );
+              case "water":
+                return (
+                  <TypesItem style={{ backgroundColor: "#5BC7FA" }}>
+                    {type.type.name.charAt(0).toUpperCase() +
+                      type.type.name.slice(1)}
+                  </TypesItem>
+                );
+              case "poison":
+                return (
+                  <TypesItem style={{ backgroundColor: "#9023a1" }}>
+                    {type.type.name.charAt(0).toUpperCase() +
+                      type.type.name.slice(1)}
+                  </TypesItem>
+                );
+              case "bug":
+                return (
+                  <TypesItem style={{ backgroundColor: "#52ff03" }}>
+                    {type.type.name.charAt(0).toUpperCase() +
+                      type.type.name.slice(1)}
+                  </TypesItem>
+                );
+              case "electric":
+                return (
+                  <TypesItem style={{ backgroundColor: "#eaff00" }}>
+                    {type.type.name.charAt(0).toUpperCase() +
+                      type.type.name.slice(1)}
+                  </TypesItem>
+                );
+              case "ground":
+                return (
+                  <TypesItem style={{ backgroundColor: "#f0ad05" }}>
+                    {type.type.name.charAt(0).toUpperCase() +
+                      type.type.name.slice(1)}
+                  </TypesItem>
+                );
+              default:
+                return (
+                  <TypesItem style={{ backgroundColor: "#b7b8b0" }}>
+                    {type.type.name.charAt(0).toUpperCase() +
+                      type.type.name.slice(1)}
+                  </TypesItem>
+                );
             }
           })}
         </CreatePokemonTypes>

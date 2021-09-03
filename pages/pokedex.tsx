@@ -1,33 +1,42 @@
 import Head from "next/head";
-import React, { useEffect, useState } from "react";
-import { CreatePokemon } from "../components/createPokemon";
+import React, { createContext, useEffect, useState } from "react";
 import { Footer } from "../components/footer";
+import { Pagination } from "../components/pagination";
+import { PokedexFilters } from "../components/pokedexFilters";
+import { Pokemons } from "../components/pokemons";
+import { PokemonContext } from "../context/PokemonContext";
 import {
   PokedexContainer,
-  PokedexFilter,
-  PokedexFilterContainer,
-  PokedexFilters,
   PokedexGrid,
   PokedexInput,
-  PokedexPages,
-  PokedexPagesContainer,
-  PokedexSelect,
   PokedexTitle,
 } from "../styledComponents/Pokedex";
-import pageButton from "../images/EllipsePage.svg";
-import Image from "next/image";
+
 
 const Pokedex = () => {
   const [allPokemons, setAllPokemons] = useState([]);
   const [loadMore, setLoadMore] = useState(
     "https://pokeapi.co/api/v2/pokemon?limit=45"
   );
-  console.log(allPokemons);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [pokemonsPerPage] = useState<number>(9);
+  const [value,setValue] = useState<string>('');
+
+  useEffect(() => {
+    getAllPokemons(); 
+  }, []);
+
+  const lastPokemonIndex = currentPage * pokemonsPerPage;
+  const firstPokemonIndex = lastPokemonIndex - pokemonsPerPage;
+  const currentPokemons = allPokemons.slice(
+    firstPokemonIndex,
+    lastPokemonIndex
+  );
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const getAllPokemons = async () => {
     const res = await fetch(loadMore);
     const data = await res.json();
-
     setLoadMore(data.next);
 
     function createPokemonObject(results) {
@@ -42,9 +51,6 @@ const Pokedex = () => {
     createPokemonObject(data.results);
   };
 
-  useEffect(() => {
-    getAllPokemons();
-  }, []);
   return (
     <PokedexContainer>
       <Head>
@@ -61,47 +67,19 @@ const Pokedex = () => {
       <PokedexTitle>
         800 <b>Pokemons</b> for you to choose your favorite
       </PokedexTitle>
-      <PokedexInput placeholder="Encuentra tu pokémon..." />
-      <PokedexFilters>
-        <PokedexFilter>
-          <PokedexSelect>
-            <option>Tipo</option>
-          </PokedexSelect>
-          <PokedexFilterContainer></PokedexFilterContainer>
-        </PokedexFilter>
-        <PokedexFilter>
-          <PokedexSelect>
-            <option>Ataque</option>
-          </PokedexSelect>
-          <PokedexFilterContainer></PokedexFilterContainer>
-        </PokedexFilter>
-        <PokedexFilter>
-          <PokedexSelect>
-            <option>Experiencia</option>
-          </PokedexSelect>
-          <PokedexFilterContainer></PokedexFilterContainer>
-        </PokedexFilter>
-      </PokedexFilters>
+      <PokemonContext.Provider value={{allPokemons}}>
+      <PokedexInput placeholder="Encuentra tu pokémon..." onChange={(e) => setValue(e.target.value)}/>
+      <PokedexFilters />
       <PokedexGrid>
-        {allPokemons.map((pokemon, index) => (
-          <CreatePokemon
-            name={pokemon.name}
-            attack={pokemon.stats[1].base_stat}
-            defense={pokemon.stats[2].base_stat}
-            types={pokemon.types}
-            image={pokemon.sprites.other.dream_world.front_default}
-            key={index}
-          />
-        ))}
+        <Pokemons setAllPokemons={setAllPokemons} value={value} currentPokemons={currentPokemons} />
       </PokedexGrid>
-      <PokedexPagesContainer>
-        <PokedexPages>
-          <Image src={pageButton} />
-          <Image src={pageButton} />
-          <Image src={pageButton} />
-        </PokedexPages>
-      </PokedexPagesContainer>
+      <Pagination
+        pokemonsPerPage={pokemonsPerPage}
+        totalPokemons={allPokemons.length}
+        paginate={paginate}
+      />
       <Footer />
+      </PokemonContext.Provider>
     </PokedexContainer>
   );
 };

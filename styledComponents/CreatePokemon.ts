@@ -7,11 +7,12 @@ export const CreatePokemonContainer = styled.div`
   width: 30%;
   margin-bottom: 6%;
   height: 136px;
+  filter: drop-shadow(4px 4px 4px rgba(33, 33, 33, 0.1));
 `;
 
 export const CreatePokemonInfo = styled.div`
   width: 40%;
-  padding-left: 9%;
+  padding-left: 8%;
   display: flex;
   flex-direction: column;
 `;
@@ -100,7 +101,6 @@ export const CreatePokemonTypes = styled.div`
   line-height: 14px;
   justify-content: space-between;
   margin-top: 9%;
-
 `;
 
 export const TypesItem = styled.div`
