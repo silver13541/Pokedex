@@ -3,8 +3,6 @@ import { CreatePokemonInterface, CurrentPokemonsInterface } from "../interfaces/
 import { CreatePokemon } from "./createPokemon";
 
 export const Pokemons = ({ currentPokemons }: CurrentPokemonsInterface) => {
-  console.log(currentPokemons);
-  
   const [count,setCount] = useState<number>(0);
   
   return (

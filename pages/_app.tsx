@@ -2,11 +2,42 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { Layout } from "../components/layout";
 import { useEffect, useState } from "react";
+import { MyContext } from "../context/PokemonContext";
+import { CreatePokemonInterface, PokemonInterface } from "../interfaces/Pokemon";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [allPokemons, setAllPokemons] = useState<CreatePokemonInterface[]>([]);
+  const [loadMore, setLoadMore] = useState(
+    "https://pokeapi.co/api/v2/pokemon?limit=36"
+  );
+  const [currentPage,setCurrentPage] = useState<number>(1);
+
+  useEffect(() => {
+    getAllPokemons();
+  }, []);
+
+  const getAllPokemons = async () => {
+    const res = await fetch(loadMore);
+    const data = await res.json();
+    setLoadMore(data.next);
+
+    function createPokemonObject(results: PokemonInterface[]) {
+      results.forEach(async (pokemon) => {
+        const res = await fetch(
+          `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
+        );
+        const data = await res.json();
+        setAllPokemons((currentList) => [...currentList, data]);
+      });
+    }
+    createPokemonObject(data.results);
+  };
+
   return (
     <Layout>
-      <Component {...pageProps} />
+      <MyContext.Provider value={{ allPokemons, setAllPokemons, currentPage, setCurrentPage }}>
+        <Component {...pageProps} />
+      </MyContext.Provider>
     </Layout>
   );
 }

@@ -8,15 +8,14 @@ import {
   TypeContainer,
   TypeContainerRow,
 } from "../styledComponents/Pokedex";
-import { PokemonContext } from "../context/PokemonContext";
+import { MyContext } from "../context/PokemonContext";
 import { PokemonInterface } from "../interfaces/Pokemon";
 
 export const PokedexFilters = () => {
   const [isShown, setIsShown] = useState(false);
   const [allTypes, setAllTypes] = useState<PokemonInterface[]>([]);
-  const [selectedTypes, setSelectedTypes] = useState<string[]>([])
-  const context = useContext(PokemonContext)
-
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+  const context = useContext(MyContext);
   useEffect(() => {
     getAllTypes();
   }, []);
@@ -37,8 +36,8 @@ export const PokedexFilters = () => {
         </FilterButton>
         {isShown && (
           <TypeContainer>
-            {allTypes.map((type) => (
-              <TypeContainerRow>
+            {allTypes.map((type, index) => (
+              <TypeContainerRow key={index}>
                 <input type="checkbox" name={type.name} value={type.name} />
                 <p>{type.name}</p>
               </TypeContainerRow>

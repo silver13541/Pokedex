@@ -1,11 +1,10 @@
 import Head from "next/head";
-import React, { createContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Footer } from "../components/footer";
 import { Pagination } from "../components/pagination";
 import { PokedexFilters } from "../components/pokedexFilters";
 import { Pokemons } from "../components/pokemons";
-import { PokemonContext } from "../context/PokemonContext";
-import { CreatePokemonInterface, PokemonInterface } from "../interfaces/Pokemon";
+import { MyContext } from "../context/PokemonContext";
 import {
   PokedexContainer,
   PokedexGrid,
@@ -13,45 +12,22 @@ import {
   PokedexTitle,
 } from "../styledComponents/Pokedex";
 
-
 const Pokedex = () => {
-  const [allPokemons, setAllPokemons] = useState<CreatePokemonInterface[]>([]);
-  const [loadMore, setLoadMore] = useState(
-    "https://pokeapi.co/api/v2/pokemon?limit=45"
-  );
-  const [currentPage, setCurrentPage] = useState<number>(1);
   const [pokemonsPerPage] = useState<number>(9);
-  const [value,setValue] = useState<string>('');
-    
-  useEffect(() => {
-    getAllPokemons(); 
-  }, []);
-
-  const lastPokemonIndex = currentPage * pokemonsPerPage;
+  const context = useContext(MyContext);
+  const [value, setValue] = useState<string>("");
+  
+  const lastPokemonIndex = context.currentPage * pokemonsPerPage;
   const firstPokemonIndex = lastPokemonIndex - pokemonsPerPage;
-  const currentPokemons = allPokemons.slice(
+  const currentPokemons = context.allPokemons.slice(
     firstPokemonIndex,
     lastPokemonIndex
   );
-  const paginate = (pageNumber:number) => setCurrentPage(pageNumber);
 
-  const getAllPokemons = async () => {
-    const res = await fetch(loadMore);
-    const data = await res.json();
-    setLoadMore(data.next);
+  console.log(context.currentPage);
+  
 
-    function createPokemonObject(results:PokemonInterface[]) {
-      results.forEach(async (pokemon) => {
-        const res = await fetch(
-          `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
-        );
-        const data = await res.json();
-        setAllPokemons((currentList) => [...currentList, data]);
-      });
-    }
-    createPokemonObject(data.results);
-  };
-
+  
   return (
     <PokedexContainer>
       <Head>
@@ -66,21 +42,21 @@ const Pokedex = () => {
         rel="stylesheet"
       ></link>
       <PokedexTitle>
-        800 <b>Pokemons</b> for you to choose your favorite
+        800<b>Pokemons</b> for you to choose your favorite
       </PokedexTitle>
-      <PokemonContext.Provider value={{allPokemons}}>
-      <PokedexInput placeholder="Encuentra tu pokémon..." onChange={(e) => setValue(e.target.value)}/>
+      <PokedexInput
+        placeholder="Encuentra tu pokémon..."
+        onChange={(e) => setValue(e.target.value)}
+      />
       <PokedexFilters />
       <PokedexGrid>
         <Pokemons currentPokemons={currentPokemons} />
       </PokedexGrid>
       <Pagination
         pokemonsPerPage={pokemonsPerPage}
-        totalPokemons={allPokemons.length}
-        paginate={paginate}
+        totalPokemons={context.allPokemons.length}
       />
       <Footer />
-      </PokemonContext.Provider>
     </PokedexContainer>
   );
 };
