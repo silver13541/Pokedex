@@ -1,18 +1,20 @@
 import React, { useState } from "react";
+import { CreatePokemonInterface, CurrentPokemonsInterface } from "../interfaces/Pokemon";
 import { CreatePokemon } from "./createPokemon";
 
-export const Pokemons = ({ setAllPokemons,value,currentPokemons }) => {
+export const Pokemons = ({ currentPokemons }: CurrentPokemonsInterface) => {
+  console.log(currentPokemons);
+  
   const [count,setCount] = useState<number>(0);
   
   return (
     <>
-      {currentPokemons.filter(pokemon => pokemon.name.startsWith(value)).map((pokemon, index) => (
+      {currentPokemons.map((pokemon, index: React.Key) => (
         <CreatePokemon
           name={pokemon.name}
-          attack={pokemon.stats[1].base_stat}
-          defense={pokemon.stats[2].base_stat}
+          stats={pokemon.stats}
           types={pokemon.types}
-          image={pokemon.sprites.other.dream_world.front_default}
+          sprites={pokemon.sprites}
           key={index}
         />
       ))}

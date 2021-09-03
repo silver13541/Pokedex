@@ -9,14 +9,13 @@ import {
   TypeContainerRow,
 } from "../styledComponents/Pokedex";
 import { PokemonContext } from "../context/PokemonContext";
+import { PokemonInterface } from "../interfaces/Pokemon";
 
 export const PokedexFilters = () => {
   const [isShown, setIsShown] = useState(false);
-  const [allTypes, setAllTypes] = useState([]);
+  const [allTypes, setAllTypes] = useState<PokemonInterface[]>([]);
   const [selectedTypes, setSelectedTypes] = useState<string[]>([])
   const context = useContext(PokemonContext)
-  console.log(context.allPokemons = ['1', '2', '3', '4', '5', '6']);
-  
 
   useEffect(() => {
     getAllTypes();

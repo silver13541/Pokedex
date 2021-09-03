@@ -5,6 +5,7 @@ import { Pagination } from "../components/pagination";
 import { PokedexFilters } from "../components/pokedexFilters";
 import { Pokemons } from "../components/pokemons";
 import { PokemonContext } from "../context/PokemonContext";
+import { CreatePokemonInterface, PokemonInterface } from "../interfaces/Pokemon";
 import {
   PokedexContainer,
   PokedexGrid,
@@ -14,14 +15,14 @@ import {
 
 
 const Pokedex = () => {
-  const [allPokemons, setAllPokemons] = useState([]);
+  const [allPokemons, setAllPokemons] = useState<CreatePokemonInterface[]>([]);
   const [loadMore, setLoadMore] = useState(
     "https://pokeapi.co/api/v2/pokemon?limit=45"
   );
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [pokemonsPerPage] = useState<number>(9);
   const [value,setValue] = useState<string>('');
-
+    
   useEffect(() => {
     getAllPokemons(); 
   }, []);
@@ -32,14 +33,14 @@ const Pokedex = () => {
     firstPokemonIndex,
     lastPokemonIndex
   );
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber:number) => setCurrentPage(pageNumber);
 
   const getAllPokemons = async () => {
     const res = await fetch(loadMore);
     const data = await res.json();
     setLoadMore(data.next);
 
-    function createPokemonObject(results) {
+    function createPokemonObject(results:PokemonInterface[]) {
       results.forEach(async (pokemon) => {
         const res = await fetch(
           `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
@@ -71,7 +72,7 @@ const Pokedex = () => {
       <PokedexInput placeholder="Encuentra tu pokémon..." onChange={(e) => setValue(e.target.value)}/>
       <PokedexFilters />
       <PokedexGrid>
-        <Pokemons setAllPokemons={setAllPokemons} value={value} currentPokemons={currentPokemons} />
+        <Pokemons currentPokemons={currentPokemons} />
       </PokedexGrid>
       <Pagination
         pokemonsPerPage={pokemonsPerPage}

@@ -12,8 +12,10 @@ import {
 } from "../styledComponents/CreatePokemon";
 import Image from "next/image";
 import ellipse from "../images/Ellipse.svg";
+import {CreatePokemonInterface} from "../interfaces/Pokemon";
 
-export const CreatePokemon = ({ name, attack, defense, types, image }) => {
+export const CreatePokemon = ({ name, stats, types, sprites }: CreatePokemonInterface)  => {
+
   let color = "";
   switch (types[0].type.name) {
     case "grass":
@@ -61,12 +63,12 @@ export const CreatePokemon = ({ name, attack, defense, types, image }) => {
         <CreatePokemonStats>
           <CreatePokemonAttack>
             <Image src={ellipse} />
-            <span>{attack}</span>
+            <span>{stats[1].base_stat}</span>
             <p>Attack</p>
           </CreatePokemonAttack>
           <CreatePokemonDefense>
             <Image src={ellipse} />
-            <span>{defense}</span>
+            <span>{stats[2].base_stat}</span>
             <p>Defense</p>
           </CreatePokemonDefense>
         </CreatePokemonStats>
@@ -134,7 +136,7 @@ export const CreatePokemon = ({ name, attack, defense, types, image }) => {
         </CreatePokemonTypes>
       </CreatePokemonInfo>
       <CreatePokemonImage style={{ backgroundColor: color }}>
-        <img src={image} alt={name} />
+        <img src={sprites.other.dream_world.front_default} alt={name} />
       </CreatePokemonImage>
     </CreatePokemonContainer>
   );

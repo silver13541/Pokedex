@@ -1,7 +1,8 @@
 import { createContext } from "react";
+import { CreatePokemonInterface } from "../interfaces/Pokemon";
 
 interface PokemonContext {
-    allPokemons: string[];
+    allPokemons: CreatePokemonInterface[];
 }
 
 export const PokemonContext = createContext<Partial<PokemonContext>>({});
