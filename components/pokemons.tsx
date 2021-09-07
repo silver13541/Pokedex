@@ -5,7 +5,8 @@ import { CreatePokemon } from "./createPokemon";
 
 export const Pokemons = ({ currentPokemons }: CurrentPokemonsInterface) => {
   const context = useContext(SelectedContext);
-
+  console.log(currentPokemons);
+  
   return (
     <>
       {context.selectedTypes.length !== 0

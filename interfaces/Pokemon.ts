@@ -4,35 +4,13 @@ export interface PokemonInterface {
 
 export interface CreatePokemonInterface {
   name: string;
-  types: Type[];
-  stats: BaseStat[]
-  sprites: Other;
+  types: Array<{ type: { name: string } }>;
+  stats: Array<{ base_stat: number }>;
+  sprites: { other: { dream_world: { front_default: string } } };
+  base_experience?: number;
 }
 
 export interface CurrentPokemonsInterface {
-  currentPokemons: CreatePokemonInterface[]
+  currentPokemons: CreatePokemonInterface[];
 }
 
-interface Type {
-  type: Name;
-}
-
-interface Name {
-  name: string;
-}
-
-interface BaseStat { 
-  base_stat: number;
-}
-
-interface Other{
-  other: DreamWorld;
-}
-
-interface DreamWorld {
-  dream_world: FrontDefault;
-}
-
-interface FrontDefault {
-  front_default: string;
-}

@@ -1,16 +1,21 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { Layout } from "../components/layout";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MyContext } from "../context/PokemonContext";
-import { CreatePokemonInterface, PokemonInterface } from "../interfaces/Pokemon";
+import {
+  CreatePokemonInterface,
+  PokemonInterface,
+} from "../interfaces/Pokemon";
+import { ModalWindow } from "../components/modal";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [allPokemons, setAllPokemons] = useState<CreatePokemonInterface[]>([]);
   const [loadMore, setLoadMore] = useState(
     "https://pokeapi.co/api/v2/pokemon?limit=81"
   );
-  const [currentPage,setCurrentPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [modalActive, setModalActive] = useState<boolean>(false);
 
   useEffect(() => {
     getAllPokemons();
@@ -35,8 +40,18 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Layout>
-      <MyContext.Provider value={{ allPokemons, setAllPokemons, currentPage, setCurrentPage }}>
+      <MyContext.Provider
+        value={{
+          allPokemons,
+          setAllPokemons,
+          currentPage,
+          setCurrentPage,
+          modalActive,
+          setModalActive,
+        }}
+      >
         <Component {...pageProps} />
+        <ModalWindow />
       </MyContext.Provider>
     </Layout>
   );

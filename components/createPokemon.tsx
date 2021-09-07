@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
   CreatePokemonAttack,
   CreatePokemonContainer,
@@ -13,8 +13,10 @@ import {
 import Image from "next/image";
 import ellipse from "../images/Ellipse.svg";
 import {CreatePokemonInterface} from "../interfaces/Pokemon";
+import { MyContext } from "../context/PokemonContext";
 
 export const CreatePokemon = ({ name, stats, types, sprites }: CreatePokemonInterface)  => {
+  const context = useContext(MyContext)
 
   let color = "";
   switch (types[0].type.name) {
@@ -47,7 +49,7 @@ export const CreatePokemon = ({ name, stats, types, sprites }: CreatePokemonInte
   }
 
   return (
-    <CreatePokemonContainer>
+    <CreatePokemonContainer onClick={() => context.setModalActive(true)}>
       <link
         href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap"
         rel="stylesheet"
