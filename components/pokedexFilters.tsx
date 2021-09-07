@@ -8,14 +8,14 @@ import {
   TypeContainer,
   TypeContainerRow,
 } from "../styledComponents/Pokedex";
-import { MyContext } from "../context/PokemonContext";
+import { MyContext, SelectedContext } from "../context/PokemonContext";
 import { PokemonInterface } from "../interfaces/Pokemon";
 
 export const PokedexFilters = () => {
   const [isShown, setIsShown] = useState(false);
   const [allTypes, setAllTypes] = useState<PokemonInterface[]>([]);
-  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
-  const context = useContext(MyContext);
+  const context = useContext(SelectedContext);
+
   useEffect(() => {
     getAllTypes();
   }, []);
@@ -25,7 +25,22 @@ export const PokedexFilters = () => {
     const data = await res.json();
     setAllTypes(data.results);
   };
+  
   const toggleFIeldset = () => setIsShown(!isShown);
+
+  const handleCheckboxChange = (e: { target: { checked: boolean; value: string; }; }) => {
+    if (e.target.checked == true){
+      context.setSelectedTypes([...context.selectedTypes, e.target.value]);
+    }else{
+        let check_list: string[] = [];
+        context.selectedTypes.map(check => {
+            if (check !== e.target.value){
+                check_list.push(check);
+            }
+        });
+        context.setSelectedTypes(check_list);
+    }
+};
 
   return (
     <PokedexFiltersContainer>
@@ -38,7 +53,7 @@ export const PokedexFilters = () => {
           <TypeContainer>
             {allTypes.map((type, index) => (
               <TypeContainerRow key={index}>
-                <input type="checkbox" name={type.name} value={type.name} />
+                <input onChange={handleCheckboxChange} type="checkbox" name={type.name} value={type.name} />
                 <p>{type.name}</p>
               </TypeContainerRow>
             ))}

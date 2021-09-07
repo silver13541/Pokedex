@@ -8,7 +8,7 @@ import { CreatePokemonInterface, PokemonInterface } from "../interfaces/Pokemon"
 function MyApp({ Component, pageProps }: AppProps) {
   const [allPokemons, setAllPokemons] = useState<CreatePokemonInterface[]>([]);
   const [loadMore, setLoadMore] = useState(
-    "https://pokeapi.co/api/v2/pokemon?limit=36"
+    "https://pokeapi.co/api/v2/pokemon?limit=81"
   );
   const [currentPage,setCurrentPage] = useState<number>(1);
 
