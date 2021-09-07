@@ -16,6 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [modalActive, setModalActive] = useState<boolean>(false);
+  const [pokemonModal, setPokemonModal] = useState<CreatePokemonInterface>({name: '', types: [], stats: [], sprites: {other: {dream_world: {front_default: ''}}}, base_experience: 0, abilities: []});
 
   useEffect(() => {
     getAllPokemons();
@@ -48,10 +49,12 @@ function MyApp({ Component, pageProps }: AppProps) {
           setCurrentPage,
           modalActive,
           setModalActive,
+          pokemonModal,
+          setPokemonModal,
         }}
       >
         <Component {...pageProps} />
-        <ModalWindow />
+        <ModalWindow pokenModal = {pokemonModal} />
       </MyContext.Provider>
     </Layout>
   );

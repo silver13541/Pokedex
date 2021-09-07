@@ -5,12 +5,11 @@ import { CreatePokemon } from "./createPokemon";
 
 export const Pokemons = ({ currentPokemons }: CurrentPokemonsInterface) => {
   const context = useContext(SelectedContext);
-  console.log(currentPokemons);
-  
+
   return (
     <>
       {context.selectedTypes.length !== 0
-        ?  currentPokemons
+        ? currentPokemons
             .filter(
               (pokemon) =>
                 pokemon.types
@@ -28,6 +27,8 @@ export const Pokemons = ({ currentPokemons }: CurrentPokemonsInterface) => {
                 stats={pokemon.stats}
                 types={pokemon.types}
                 sprites={pokemon.sprites}
+                base_experience={pokemon.base_experience}
+                abilities={pokemon.abilities}
                 key={index}
               />
             ))
@@ -37,6 +38,8 @@ export const Pokemons = ({ currentPokemons }: CurrentPokemonsInterface) => {
               stats={pokemon.stats}
               types={pokemon.types}
               sprites={pokemon.sprites}
+              base_experience={pokemon.base_experience}
+              abilities={pokemon.abilities}
               key={index}
             />
           ))}

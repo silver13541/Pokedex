@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import {
   CreatePokemonAttack,
   CreatePokemonContainer,
@@ -15,9 +15,9 @@ import ellipse from "../images/Ellipse.svg";
 import {CreatePokemonInterface} from "../interfaces/Pokemon";
 import { MyContext } from "../context/PokemonContext";
 
-export const CreatePokemon = ({ name, stats, types, sprites }: CreatePokemonInterface)  => {
+export const CreatePokemon = ({ name, stats, types, sprites, base_experience, abilities }: CreatePokemonInterface)  => {
   const context = useContext(MyContext)
-
+  
   let color = "";
   switch (types[0].type.name) {
     case "grass":
@@ -49,7 +49,9 @@ export const CreatePokemon = ({ name, stats, types, sprites }: CreatePokemonInte
   }
 
   return (
-    <CreatePokemonContainer onClick={() => context.setModalActive(true)}>
+    <CreatePokemonContainer onClick={() => {context.setModalActive(true)
+    context.setPokemonModal({ name, stats, types, sprites, base_experience, abilities })}
+    }>
       <link
         href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap"
         rel="stylesheet"
