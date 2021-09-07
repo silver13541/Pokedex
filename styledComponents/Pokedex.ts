@@ -47,12 +47,20 @@ export const FilterButton = styled.button`
   display: flex;
   align-items: center;
   cursor: pointer;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  /* display: flex; */
+  line-height: 20px;
 `;
 
 export const TypeContainer = styled.div`
   display: grid;
-  width: 139%;
-  margin-top: 5%;
+  position: absolute;
+  width: 21%;
+  z-index: 1;
+  margin-top: 0.5%;
   grid-template-columns: 1fr 1fr 1fr;
   background: #f2f2f2;
   box-shadow: 4px 4px 8px rgb(1 28 64 / 20%);
