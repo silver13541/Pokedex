@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "mocha"
   },
   "dependencies": {
     "@types/styled-components": "^5.1.13",
@@ -19,6 +20,7 @@
     "@types/react": "17.0.19",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.0",
+    "mocha": "^9.1.1",
     "typescript": "4.4.2"
   }
 }

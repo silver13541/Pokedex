@@ -30,7 +30,6 @@ interface ModalWindowInterface {
 
 export const ModalWindow = ({ pokenModal }: ModalWindowInterface) => {
   const context = useContext(MyContext);
-  console.log(pokenModal);
 
   return (
     <>

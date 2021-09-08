@@ -8,7 +8,7 @@ import {
   TypeContainer,
   TypeContainerRow,
 } from "../styledComponents/Pokedex";
-import { MyContext, SelectedContext } from "../context/PokemonContext";
+import { SelectedContext } from "../context/PokemonContext";
 import { PokemonInterface } from "../interfaces/Pokemon";
 
 export const PokedexFilters = () => {
