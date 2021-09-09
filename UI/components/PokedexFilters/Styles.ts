@@ -52,8 +52,10 @@ export const FilterButton = styled.button`
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
-  /* display: flex; */
   line-height: 20px;
+  div{
+    width: 100%;
+  }
 `;
 
 export const TypeContainer = styled.div`

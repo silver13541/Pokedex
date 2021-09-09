@@ -17,8 +17,6 @@ import { Ellipse } from "../../images/Ellipse";
 
 export const CreatePokemon = ({ name, stats, types, sprites, base_experience, abilities }: CreatePokemonInterface)  => {
   const context = useContext(MyContext);
-  console.log(types);
-  
   
   let color = "";
   switch (types[0].type.name) {

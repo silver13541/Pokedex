@@ -41,18 +41,20 @@ export const PokedexFilters = () => {
         context.setSelectedTypes(check_list);
     }
 };
+  console.log(allTypes);
+  
 
   return (
     <PokedexFiltersContainer>
       <PokedexFilter>
         <FilterButton onClick={toggleFIeldset}>
-          <div style={{ width: "100%" }}>Tipo</div>
+          <div>Tipo</div>
           <ArrowFilter/>
         </FilterButton>
         {isShown && (
           <TypeContainer>
-            {allTypes.map((type, index) => (
-              <TypeContainerRow key={index}>
+            {allTypes.map((type) => (
+              <TypeContainerRow key={type.name}>
                 <input onChange={handleCheckboxChange} type="checkbox" name={type.name} value={type.name} />
                 <p>{type.name}</p>
               </TypeContainerRow>
@@ -62,13 +64,13 @@ export const PokedexFilters = () => {
       </PokedexFilter>
       <PokedexFilter>
         <FilterButton>
-          <div style={{ width: "100%" }}>Ataque</div>
+          <div>Ataque</div>
           <ArrowFilter/>
         </FilterButton>
       </PokedexFilter>
       <PokedexFilter>
         <FilterButton>
-          <div style={{ width: "100%" }}>Experiencia</div>
+          <div>Experiencia</div>
           <ArrowFilter/>
         </FilterButton>
       </PokedexFilter>

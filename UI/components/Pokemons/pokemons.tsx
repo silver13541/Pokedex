@@ -5,9 +5,7 @@ import { CreatePokemon } from "../CreatePokemon/createPokemon";
 
 export const Pokemons = ({ currentPokemons }: CurrentPokemonsInterface) => {
   const context = useContext(SelectedContext);
-  console.log(currentPokemons);
   
-
   return (
     <>
       {context.selectedTypes.length !== 0
@@ -23,7 +21,7 @@ export const Pokemons = ({ currentPokemons }: CurrentPokemonsInterface) => {
                   .sort()
                   .join() === context.selectedTypes.sort().join()
             )
-            .map((pokemon, index: React.Key) => (
+            .map((pokemon) => (
               <CreatePokemon
                 name={pokemon.name}
                 stats={pokemon.stats}
@@ -31,10 +29,10 @@ export const Pokemons = ({ currentPokemons }: CurrentPokemonsInterface) => {
                 sprites={pokemon.sprites}
                 base_experience={pokemon.base_experience}
                 abilities={pokemon.abilities}
-                key={index}
+                key={pokemon.name + pokemon.types}
               />
             ))
-        : currentPokemons.map((pokemon, index: React.Key) => (
+        : currentPokemons.map((pokemon) => (
             <CreatePokemon
               name={pokemon.name}
               stats={pokemon.stats}
@@ -42,7 +40,7 @@ export const Pokemons = ({ currentPokemons }: CurrentPokemonsInterface) => {
               sprites={pokemon.sprites}
               base_experience={pokemon.base_experience}
               abilities={pokemon.abilities}
-              key={index}
+              key={pokemon.name + pokemon.types}
             />
           ))}
     </>
