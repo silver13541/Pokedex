@@ -8,6 +8,7 @@ import {
   PokemonInterface,
 } from "../interfaces/Pokemon";
 import { ModalWindow } from "../components/modal";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [allPokemons, setAllPokemons] = useState<CreatePokemonInterface[]>([]);
@@ -16,7 +17,14 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [modalActive, setModalActive] = useState<boolean>(false);
-  const [pokemonModal, setPokemonModal] = useState<CreatePokemonInterface>({name: '', types: [], stats: [], sprites: {other: {dream_world: {front_default: ''}}}, base_experience: 0, abilities: []});
+  const [pokemonModal, setPokemonModal] = useState<CreatePokemonInterface>({
+    name: "",
+    types: [],
+    stats: [],
+    sprites: { other: { dream_world: { front_default: "" } } },
+    base_experience: 0,
+    abilities: [],
+  });
 
   useEffect(() => {
     getAllPokemons();
@@ -40,23 +48,28 @@ function MyApp({ Component, pageProps }: AppProps) {
   };
 
   return (
-    <Layout>
-      <MyContext.Provider
-        value={{
-          allPokemons,
-          setAllPokemons,
-          currentPage,
-          setCurrentPage,
-          modalActive,
-          setModalActive,
-          pokemonModal,
-          setPokemonModal,
-        }}
-      >
-        <Component {...pageProps} />
-        <ModalWindow pokenModal = {pokemonModal} />
-      </MyContext.Provider>
-    </Layout>
+    <>
+      <Head>
+        <title>Pokedex</title>
+      </Head>
+      <Layout>
+        <MyContext.Provider
+          value={{
+            allPokemons,
+            setAllPokemons,
+            currentPage,
+            setCurrentPage,
+            modalActive,
+            setModalActive,
+            pokemonModal,
+            setPokemonModal,
+          }}
+        >
+          <Component {...pageProps} />
+          <ModalWindow pokenModal={pokemonModal} />
+        </MyContext.Provider>
+      </Layout>
+    </>
   );
 }
 export default MyApp;

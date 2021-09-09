@@ -57,10 +57,7 @@ const Pokedex = () => {
   }, [value]);
 
   return (
-    <PokedexContainer>
-      <Head>
-        <title>Pokedex</title>
-      </Head>
+    <PokedexContainer> 
       <link
         href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap"
         rel="stylesheet"
