@@ -3,7 +3,7 @@ import { Footer } from "../UI/Footer/footer";
 import { Pagination } from "../UI/Pagination/pagination";
 import { PokedexFilters } from "../UI/PokedexFilters/pokedexFilters";
 import { Pokemons } from "../UI/Pokemons/pokemons";
-import { MyContext, SelectedContext } from "../context/PokemonContext";
+import { MyContext } from "../context/PokemonContext";
 import {
   PokedexContainer,
   PokedexGrid,
@@ -11,6 +11,7 @@ import {
   PokedexTitle,
 } from "../UI/PokedexFilters/Styles";
 import { CreatePokemonInterface } from "../interfaces/Pokemon";
+import { SelectedContext } from "../context/SelectedPokemon";
 
 const Pokedex = () => {
   const [pokemonsPerPage] = useState<number>(9);
@@ -58,7 +59,7 @@ const Pokedex = () => {
   return (
     <PokedexContainer> 
       <PokedexTitle>
-        800<b>Pokemons</b> for you to choose your favorite
+        800 <b>Pokemons</b> for you to choose your favorite
       </PokedexTitle>
       <SelectedContext.Provider
         value={{

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { SelectedContext } from "../../context/PokemonContext";
+import { SelectedContext } from "../../context/SelectedPokemon";
 import { CurrentPokemonsInterface } from "../../interfaces/Pokemon";
 import { CreatePokemon } from "../CreatePokemon/createPokemon";
 

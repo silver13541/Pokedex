@@ -23,16 +23,3 @@ export const MyContext = createContext<MyContext>({
     setModalActive: (setModalActive) => (setModalActive),
 });
 
-type SelectedContext = {
-    selectedTypes: string[];
-    currentPokemons: CreatePokemonInterface[];
-    setSelectedTypes: React.Dispatch<SetStateAction<string[]>>;
-    setCurrentPokemons: React.Dispatch<SetStateAction<CreatePokemonInterface[]>>
-}
-
-export const SelectedContext = createContext<SelectedContext>({
-    selectedTypes: [],
-    currentPokemons: [],
-    setSelectedTypes: (selectedTypes) => (selectedTypes),
-    setCurrentPokemons: (setCurrentPokemons) => (setCurrentPokemons),
-})
