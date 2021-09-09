@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { MyContext } from "../../context/PokemonContext";
-import { CreatePokemonInterface } from "../../interfaces/Pokemon";
+import { MyContext } from "../../../context/PokemonContext";
+import { CreatePokemonInterface } from "../../../interfaces/Pokemon";
 import {
   AbilitiesContainer,
   AbilitiesItem,
@@ -22,13 +22,9 @@ import {
   ModalInfoHeader,
 } from "./Styles";
 import Image from "next/image";
-import exp from "../../images/Exp.svg";
+import { Exp } from "../../images/Exp";
 
-interface ModalWindowInterface {
-  pokenModal: CreatePokemonInterface;
-}
-
-export const ModalWindow = ({ pokenModal }: ModalWindowInterface) => {
+export const ModalWindow = ({ sprites,types,name,base_experience,abilities,stats }: CreatePokemonInterface) => {
   const context = useContext(MyContext);
 
   return (
@@ -42,9 +38,9 @@ export const ModalWindow = ({ pokenModal }: ModalWindowInterface) => {
         >
           <ModalContentActive onClick={(e) => e.stopPropagation()}>
             <ModalContainerImage>
-              <img src={pokenModal.sprites.other.dream_world.front_default} />
+              <img src={sprites.other.dream_world.front_default} />
               <ContainerTypes>
-                {pokenModal.types.map((type, index) => (
+                {types.map((type, index) => (
                   <ContainerTypesItem key={index}>
                     <span>
                       {type.type.name.charAt(0).toUpperCase() +
@@ -57,21 +53,21 @@ export const ModalWindow = ({ pokenModal }: ModalWindowInterface) => {
             <ModalInfo>
               <ModalInfoHeader>
                 <HeaderTitle>
-                  {pokenModal.name.charAt(0).toUpperCase() +
-                    pokenModal.name.slice(1)}
+                  {name.charAt(0).toUpperCase() +
+                    name.slice(1)}
                 </HeaderTitle>
                 <HeaderGeneration>
                   <span style={{ alignSelf: "end" }}>Generation 1</span>
                   <HeaderExperience>
-                    <Image src={exp} />
-                    <span>{pokenModal.base_experience}</span>
+                    <Exp/>
+                    <span>{base_experience}</span>
                   </HeaderExperience>
                 </HeaderGeneration>
               </ModalInfoHeader>
               <InfoAbilities>
                 <span>Abilities</span>
                 <AbilitiesContainer>
-                  {pokenModal.abilities.map((ability, index) => (
+                  {abilities.map((ability, index) => (
                     <AbilitiesItem key={index}>
                       {ability.ability.name.charAt(0).toUpperCase() +
                         ability.ability.name.slice(1)}
@@ -82,12 +78,12 @@ export const ModalWindow = ({ pokenModal }: ModalWindowInterface) => {
               <HealthExpContainer>
                 <HealtContainer>
                   <span>Healthy Points</span>
-                  {pokenModal.stats[0].base_stat}
+                  {stats[0].base_stat}
                   <HealthLoader></HealthLoader>
                 </HealtContainer>
                 <ExperienceContainer>
                   <span>Experience</span>
-                  {pokenModal.base_experience}
+                  {base_experience}
                   <ExperienceLoader></ExperienceLoader>
                 </ExperienceContainer>
               </HealthExpContainer>

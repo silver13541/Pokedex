@@ -1,4 +1,4 @@
-export interface PaginationInterface {
+export interface IPagination {
   pokemonsPerPage: number;
   totalPokemons: number;
 }

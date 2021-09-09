@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
-import arrowFilter from "../../images/ArrowFilter.svg";
 import {
   FilterButton,
   PokedexFilter,
@@ -8,12 +7,13 @@ import {
   TypeContainer,
   TypeContainerRow,
 } from "./Styles";
-import { SelectedContext } from "../../context/SelectedPokemon";
-import { PokemonInterface } from "../../interfaces/Pokemon";
+import { SelectedContext } from "../../../context/SelectedPokemon";
+import { IPokemon } from "../../../interfaces/Pokemon";
+import { ArrowFilter } from "../../images/ArrowFilter";
 
 export const PokedexFilters = () => {
   const [isShown, setIsShown] = useState(false);
-  const [allTypes, setAllTypes] = useState<PokemonInterface[]>([]);
+  const [allTypes, setAllTypes] = useState<IPokemon[]>([]);
   const context = useContext(SelectedContext);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export const PokedexFilters = () => {
       <PokedexFilter>
         <FilterButton onClick={toggleFIeldset}>
           <div style={{ width: "100%" }}>Tipo</div>
-          <Image src={arrowFilter} />
+          <ArrowFilter/>
         </FilterButton>
         {isShown && (
           <TypeContainer>
@@ -63,13 +63,13 @@ export const PokedexFilters = () => {
       <PokedexFilter>
         <FilterButton>
           <div style={{ width: "100%" }}>Ataque</div>
-          <Image src={arrowFilter} />
+          <ArrowFilter/>
         </FilterButton>
       </PokedexFilter>
       <PokedexFilter>
         <FilterButton>
           <div style={{ width: "100%" }}>Experiencia</div>
-          <Image src={arrowFilter} />
+          <ArrowFilter/>
         </FilterButton>
       </PokedexFilter>
     </PokedexFiltersContainer>

@@ -11,12 +11,14 @@ import {
   TypesItem,
 } from "./Styles";
 import Image from "next/image";
-import ellipse from "../../images/Ellipse.svg";
-import {CreatePokemonInterface} from "../../interfaces/Pokemon";
-import { MyContext } from "../../context/PokemonContext";
+import {CreatePokemonInterface} from "../../../interfaces/Pokemon";
+import { MyContext } from "../../../context/PokemonContext";
+import { Ellipse } from "../../images/Ellipse";
 
 export const CreatePokemon = ({ name, stats, types, sprites, base_experience, abilities }: CreatePokemonInterface)  => {
-  const context = useContext(MyContext)
+  const context = useContext(MyContext);
+  console.log(types);
+  
   
   let color = "";
   switch (types[0].type.name) {
@@ -66,12 +68,12 @@ export const CreatePokemon = ({ name, stats, types, sprites, base_experience, ab
         </CreatePokemonTitle>
         <CreatePokemonStats>
           <CreatePokemonAttack>
-            <Image src={ellipse} />
+            <Ellipse/>
             <span>{stats[1].base_stat}</span>
             <p>Attack</p>
           </CreatePokemonAttack>
           <CreatePokemonDefense>
-            <Image src={ellipse} />
+          <Ellipse/>
             <span>{stats[2].base_stat}</span>
             <p>Defense</p>
           </CreatePokemonDefense>

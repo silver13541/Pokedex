@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
-import { SelectedContext } from "../../context/SelectedPokemon";
-import { CurrentPokemonsInterface } from "../../interfaces/Pokemon";
+import { SelectedContext } from "../../../context/SelectedPokemon";
+import { CurrentPokemonsInterface } from "../../../interfaces/Pokemon";
 import { CreatePokemon } from "../CreatePokemon/createPokemon";
 
 export const Pokemons = ({ currentPokemons }: CurrentPokemonsInterface) => {
   const context = useContext(SelectedContext);
+  console.log(currentPokemons);
+  
 
   return (
     <>

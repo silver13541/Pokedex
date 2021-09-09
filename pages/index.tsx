@@ -8,9 +8,9 @@ import {
   TextButton,
   TextParagraph,
   TextTittle,
-} from "../UI/StylesHome";
-import pokemon from "../images/pokemonHome.png";
-import { Footer } from "../UI/Footer/footer";
+} from "../UI/styles/stylesPage/StylesHome";
+import pokemon from "../UI/images/pokemonHome.png";
+import { Footer } from "../UI/components/Footer/footer";
 import { useRouter } from "next/dist/client/router";
 
 const Home = () => {
