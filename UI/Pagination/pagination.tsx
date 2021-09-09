@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import pageButton from "../images/EllipsePage.svg";
+import pageButton from "../../images/EllipsePage.svg";
 import Image from "next/image";
 import {
   PokedexPages,
   PokedexPagesContainer,
-} from "../styledComponents/Pokedex";
-import { MyContext } from "../context/PokemonContext";
-import { PaginationInterface } from "../interfaces/Pagination";
+} from "../PokedexFilters/Styles";
+import { MyContext } from "../../context/PokemonContext";
+import { PaginationInterface } from "../../interfaces/Pagination";
 
 export const Pagination = ({ pokemonsPerPage, totalPokemons } : PaginationInterface) => {
   const context = useContext(MyContext);

@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
-import arrowFilter from "../images/ArrowFilter.svg";
+import arrowFilter from "../../images/ArrowFilter.svg";
 import {
   FilterButton,
   PokedexFilter,
   PokedexFiltersContainer,
   TypeContainer,
   TypeContainerRow,
-} from "../styledComponents/Pokedex";
-import { SelectedContext } from "../context/PokemonContext";
-import { PokemonInterface } from "../interfaces/Pokemon";
+} from "./Styles";
+import { SelectedContext } from "../../context/PokemonContext";
+import { PokemonInterface } from "../../interfaces/Pokemon";
 
 export const PokedexFilters = () => {
   const [isShown, setIsShown] = useState(false);

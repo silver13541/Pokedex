@@ -18,6 +18,7 @@ export const PokedexTitle = styled.h1`
 
 export const PokedexInput = styled.input`
   width: 97%;
+  outline: 0;
   margin: 35px 20px 35px 20px;
   border: 0px;
   border-radius: 40px;

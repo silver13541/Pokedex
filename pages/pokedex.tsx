@@ -1,16 +1,15 @@
-import Head from "next/head";
 import React, { useContext, useEffect, useState } from "react";
-import { Footer } from "../components/footer";
-import { Pagination } from "../components/pagination";
-import { PokedexFilters } from "../components/pokedexFilters";
-import { Pokemons } from "../components/pokemons";
+import { Footer } from "../UI/Footer/footer";
+import { Pagination } from "../UI/Pagination/pagination";
+import { PokedexFilters } from "../UI/PokedexFilters/pokedexFilters";
+import { Pokemons } from "../UI/Pokemons/pokemons";
 import { MyContext, SelectedContext } from "../context/PokemonContext";
 import {
   PokedexContainer,
   PokedexGrid,
   PokedexInput,
   PokedexTitle,
-} from "../styledComponents/Pokedex";
+} from "../UI/PokedexFilters/Styles";
 import { CreatePokemonInterface } from "../interfaces/Pokemon";
 
 const Pokedex = () => {
@@ -58,14 +57,6 @@ const Pokedex = () => {
 
   return (
     <PokedexContainer> 
-      <link
-        href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap"
-        rel="stylesheet"
-      ></link>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
-        rel="stylesheet"
-      ></link>
       <PokedexTitle>
         800<b>Pokemons</b> for you to choose your favorite
       </PokedexTitle>

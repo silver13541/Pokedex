@@ -1,13 +1,13 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { Layout } from "../components/layout";
+import { Layout } from "../UI/layout";
 import React, { useEffect, useState } from "react";
 import { MyContext } from "../context/PokemonContext";
 import {
   CreatePokemonInterface,
   PokemonInterface,
 } from "../interfaces/Pokemon";
-import { ModalWindow } from "../components/modal";
+import { ModalWindow } from "../UI/Modal/modal";
 import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -52,6 +52,18 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <title>Pokedex</title>
       </Head>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap"
+        rel="stylesheet"
+      ></link>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap"
+        rel="stylesheet"
+      ></link>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
+        rel="stylesheet"
+      ></link>
       <Layout>
         <MyContext.Provider
           value={{

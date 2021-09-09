@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { MyContext } from "../context/PokemonContext";
-import { CreatePokemonInterface } from "../interfaces/Pokemon";
+import { MyContext } from "../../context/PokemonContext";
+import { CreatePokemonInterface } from "../../interfaces/Pokemon";
 import {
   AbilitiesContainer,
   AbilitiesItem,
@@ -20,9 +20,9 @@ import {
   ModalContentActive,
   ModalInfo,
   ModalInfoHeader,
-} from "../styledComponents/Modal";
+} from "./Styles";
 import Image from "next/image";
-import exp from "../images/Exp.svg";
+import exp from "../../images/Exp.svg";
 
 interface ModalWindowInterface {
   pokenModal: CreatePokemonInterface;
@@ -34,8 +34,13 @@ export const ModalWindow = ({ pokenModal }: ModalWindowInterface) => {
   return (
     <>
       {context.modalActive ? (
-        <ModalActive onClick={() => context.setModalActive(false)}>
-          <ModalContentActive>
+        <ModalActive
+          onClick={(e) => {
+            context.setModalActive(false);
+            e.stopPropagation();
+          }}
+        >
+          <ModalContentActive onClick={(e) => e.stopPropagation()}>
             <ModalContainerImage>
               <img src={pokenModal.sprites.other.dream_world.front_default} />
               <ContainerTypes>
@@ -56,7 +61,7 @@ export const ModalWindow = ({ pokenModal }: ModalWindowInterface) => {
                     pokenModal.name.slice(1)}
                 </HeaderTitle>
                 <HeaderGeneration>
-                  <span style={{alignSelf: 'end'}}>Generation 1</span>
+                  <span style={{ alignSelf: "end" }}>Generation 1</span>
                   <HeaderExperience>
                     <Image src={exp} />
                     <span>{pokenModal.base_experience}</span>
@@ -78,16 +83,12 @@ export const ModalWindow = ({ pokenModal }: ModalWindowInterface) => {
                 <HealtContainer>
                   <span>Healthy Points</span>
                   {pokenModal.stats[0].base_stat}
-                  <HealthLoader>
-
-                  </HealthLoader>
+                  <HealthLoader></HealthLoader>
                 </HealtContainer>
                 <ExperienceContainer>
                   <span>Experience</span>
                   {pokenModal.base_experience}
-                  <ExperienceLoader>
-                    
-                  </ExperienceLoader>
+                  <ExperienceLoader></ExperienceLoader>
                 </ExperienceContainer>
               </HealthExpContainer>
             </ModalInfo>

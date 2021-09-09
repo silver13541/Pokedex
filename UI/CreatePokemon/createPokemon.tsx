@@ -9,11 +9,11 @@ import {
   CreatePokemonTitle,
   CreatePokemonTypes,
   TypesItem,
-} from "../styledComponents/CreatePokemon";
+} from "./Styles";
 import Image from "next/image";
-import ellipse from "../images/Ellipse.svg";
-import {CreatePokemonInterface} from "../interfaces/Pokemon";
-import { MyContext } from "../context/PokemonContext";
+import ellipse from "../../images/Ellipse.svg";
+import {CreatePokemonInterface} from "../../interfaces/Pokemon";
+import { MyContext } from "../../context/PokemonContext";
 
 export const CreatePokemon = ({ name, stats, types, sprites, base_experience, abilities }: CreatePokemonInterface)  => {
   const context = useContext(MyContext)
