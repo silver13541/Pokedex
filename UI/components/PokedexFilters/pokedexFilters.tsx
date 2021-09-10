@@ -6,14 +6,14 @@ import {
   TypeContainer,
   TypeContainerRow,
 } from "./Styles";
-import { useSelectedContext } from "../../../context/SelectedPokemon";
 import { IPokemon } from "../../../interfaces/Pokemon";
 import { ArrowFilter } from "../../images/ArrowFilter";
+import { usePokemonContext } from "../../../context/PokemonContext";
 
 export const PokedexFilters = () => {
   const [isShown, setIsShown] = useState(false);
   const [allTypes, setAllTypes] = useState<IPokemon[]>([]);
-  const { selectedTypes, setSelectedTypes } = useSelectedContext();
+  const { selectedTypes, setSelectedTypes } = usePokemonContext();
 
   const getAllTypes = async () => {
     const res = await fetch(`https://pokeapi.co/api/v2/type`);

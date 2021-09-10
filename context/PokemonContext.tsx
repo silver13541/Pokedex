@@ -22,21 +22,29 @@ type MyContext = {
   setCurrentPage: React.Dispatch<SetStateAction<number>>;
   modalActive: boolean;
   setModalActive: React.Dispatch<SetStateAction<boolean>>;
+  currentPokem: CreatePokemonInterface[];
+  setCurrentPokemons: React.Dispatch<SetStateAction<CreatePokemonInterface[]>>;
+  selectedTypes: string[];
+  setSelectedTypes: React.Dispatch<SetStateAction<string[]>>;
 };
 
 type Props = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 const initialState: MyContext = {
   allPokemons: [],
   currentPage: 1,
   modalActive: false,
   pokemonModal: InitialPokemonModal,
+  currentPokem: [],
+  selectedTypes: [],
+  setSelectedTypes: (selectedTypes) => selectedTypes,
   setPokemonModal: (setPokemonModal) => setPokemonModal,
   setAllPokemons: (allPokemons) => allPokemons,
   setCurrentPage: (setCurrentPage) => setCurrentPage,
   setModalActive: (setModalActive) => setModalActive,
+  setCurrentPokemons: (setCurrentPokemons) => setCurrentPokemons,
 };
 
 export const PokemonContext = createContext(initialState);
@@ -47,6 +55,9 @@ export const PokemonContextProvider = ({ children }: Props): ReactElement => {
   const [modalActive, setModalActive] = useState<boolean>(false);
   const [pokemonModal, setPokemonModal] =
     useState<CreatePokemonInterface>(InitialPokemonModal);
+  const [currentPokem, setCurrentPokemons] =
+    useState<CreatePokemonInterface[]>(allPokemons);
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
 
   useEffect(() => {
     getAllPokemons();
@@ -67,27 +78,40 @@ export const PokemonContextProvider = ({ children }: Props): ReactElement => {
     createPokemonObject(data.results);
   };
 
-  const value = useMemo(() => ({
-    allPokemons,
-    currentPage,
-    modalActive,
-    pokemonModal,
-    setAllPokemons,
-    setCurrentPage,
-    setModalActive,
-    setPokemonModal,
-  }), [
-    allPokemons,
-    currentPage,
-    modalActive,
-    pokemonModal,
-    setAllPokemons,
-    setCurrentPage,
-    setModalActive,
-    setPokemonModal,
-  ]);
+  const value = useMemo(
+    () => ({
+      allPokemons,
+      currentPage,
+      modalActive,
+      pokemonModal,
+      currentPokem,
+      setAllPokemons,
+      setCurrentPage,
+      setModalActive,
+      setPokemonModal,
+      setCurrentPokemons,
+      selectedTypes,
+      setSelectedTypes,
+    }),
+    [
+      allPokemons,
+      currentPage,
+      modalActive,
+      pokemonModal,
+      currentPokem,
+      setAllPokemons,
+      setCurrentPage,
+      setModalActive,
+      setPokemonModal,
+      setCurrentPokemons,
+      selectedTypes,
+      setSelectedTypes,
+    ]
+  );
 
-  return <PokemonContext.Provider value={value}>{children}</PokemonContext.Provider>;
+  return (
+    <PokemonContext.Provider value={value}>{children}</PokemonContext.Provider>
+  );
 };
 
-export const usePokemonContext =(): MyContext => useContext(PokemonContext)
+export const usePokemonContext = (): MyContext => useContext(PokemonContext);

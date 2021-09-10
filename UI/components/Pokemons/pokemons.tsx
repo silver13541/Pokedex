@@ -1,10 +1,10 @@
 import React, { useMemo } from "react";
-import { useSelectedContext } from "../../../context/SelectedPokemon";
+import { usePokemonContext } from "../../../context/PokemonContext";
 import { CurrentPokemonsInterface } from "../../../interfaces/Pokemon";
 import { CreatePokemon } from "../CreatePokemon/createPokemon";
 
 export const Pokemons = ({ currentPokemons }: CurrentPokemonsInterface) => {
-  const { selectedTypes } = useSelectedContext();
+  const { selectedTypes } = usePokemonContext();
   let filterPokemons;
 
   if (selectedTypes.length !== 0) {
