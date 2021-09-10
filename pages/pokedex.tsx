@@ -14,21 +14,21 @@ import { CreatePokemonInterface } from "../interfaces/Pokemon";
 import { SelectedContext } from "../context/SelectedPokemon";
 
 const Pokedex = () => {
+  const { allPokemons, currentPage } = useContext(PokemonContext);
+
   const [pokemonsPerPage] = useState<number>(9);
-  const {allPokemons, currentPage} = useContext(PokemonContext);
   const [value, setValue] = useState<string>("");
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
-  const [currentPokem, setCurrentPokemons] = useState<CreatePokemonInterface[]>(
-    allPokemons
-  );
+  const [currentPokem, setCurrentPokemons] =
+    useState<CreatePokemonInterface[]>(allPokemons);
 
   const lastPokemonIndex = currentPage * pokemonsPerPage;
   const firstPokemonIndex = lastPokemonIndex - pokemonsPerPage;
+
   const currentPokemons = currentPokem.slice(
     firstPokemonIndex,
     lastPokemonIndex
   );
-
   const sliceAllPokemons = allPokemons.slice(
     firstPokemonIndex,
     lastPokemonIndex
@@ -57,7 +57,7 @@ const Pokedex = () => {
   }, [value]);
 
   return (
-    <PokedexContainer> 
+    <PokedexContainer>
       <PokedexTitle>
         800 <b>Pokemons</b> for you to choose your favorite
       </PokedexTitle>
@@ -74,27 +74,23 @@ const Pokedex = () => {
           onChange={(e) => setValue(e.target.value)}
         />
         <PokedexFilters />
-        {selectedTypes.length === 0 && value.length === 0 ? (
-          <>
-            <PokedexGrid>
-              <Pokemons currentPokemons={sliceAllPokemons} />
-            </PokedexGrid>
-            <Pagination
-              pokemonsPerPage={pokemonsPerPage}
-              totalPokemons={allPokemons.length}
-            />
-          </>
-        ) : (
-          <>
-            <PokedexGrid>
-              <Pokemons currentPokemons={currentPokemons} />
-            </PokedexGrid>
-            <Pagination
-              pokemonsPerPage={pokemonsPerPage}
-              totalPokemons={currentPokem.length}
-            />
-          </>
-        )}
+        <PokedexGrid>
+          <Pokemons
+            currentPokemons={
+              selectedTypes.length === 0 && value.length === 0
+                ? sliceAllPokemons
+                : currentPokemons
+            }
+          />
+        </PokedexGrid>
+        <Pagination
+          pokemonsPerPage={pokemonsPerPage}
+          totalPokemons={
+            selectedTypes.length === 0 && value.length === 0
+              ? allPokemons.length
+              : currentPokem.length
+          }
+        />
       </SelectedContext.Provider>
       <Footer />
     </PokedexContainer>

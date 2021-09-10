@@ -13,7 +13,7 @@ import { ArrowFilter } from "../../images/ArrowFilter";
 export const PokedexFilters = () => {
   const [isShown, setIsShown] = useState(false);
   const [allTypes, setAllTypes] = useState<IPokemon[]>([]);
-  const {selectedTypes,setSelectedTypes} = useContext(SelectedContext);
+  const { selectedTypes, setSelectedTypes } = useContext(SelectedContext);
 
   const getAllTypes = async () => {
     const res = await fetch(`https://pokeapi.co/api/v2/type`);
@@ -30,8 +30,8 @@ export const PokedexFilters = () => {
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
       setSelectedTypes([...selectedTypes, e.target.value]);
-    } 
-    else {
+    }
+    if (!e.target.checked) {
       let check_list: string[] = [];
       selectedTypes.map((check) => {
         if (check !== e.target.value) {

@@ -15,8 +15,8 @@ export const Pagination = ({ pokemonsPerPage, totalPokemons }: IPagination) => {
   return (
     <PokedexPagesContainer>
       <PokedexPages>
-        {pageNumbers.map((number, index) => (
-          <div key={index} onClick={() => setCurrentPage(number)}>
+        {pageNumbers.map((number) => (
+          <div key={number} onClick={() => setCurrentPage(number)}>
             <EllipsePage />
           </div>
         ))}
