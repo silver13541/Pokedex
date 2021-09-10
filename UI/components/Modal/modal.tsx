@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { MyContext } from "../../../context/PokemonContext";
+import { PokemonContext } from "../../../context/PokemonContext";
 import { CreatePokemonInterface } from "../../../interfaces/Pokemon";
 import {
   AbilitiesContainer,
@@ -21,18 +21,28 @@ import {
   ModalInfo,
   ModalInfoHeader,
 } from "./Styles";
-import Image from "next/image";
 import { Exp } from "../../images/Exp";
 
-export const ModalWindow = ({ sprites,types,name,base_experience,abilities,stats }: CreatePokemonInterface) => {
-  const context = useContext(MyContext);
+export const ModalWindow = ({
+  sprites,
+  types,
+  name,
+  base_experience,
+  abilities,
+  stats,
+}: CreatePokemonInterface) => {
+  const {modalActive,setModalActive} = useContext(PokemonContext);
+
+  const UpperCase = (string: string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
 
   return (
     <>
-      {context.modalActive ? (
+      {modalActive && (
         <ModalActive
           onClick={(e) => {
-            context.setModalActive(false);
+            setModalActive(false);
             e.stopPropagation();
           }}
         >
@@ -43,8 +53,7 @@ export const ModalWindow = ({ sprites,types,name,base_experience,abilities,stats
                 {types.map((type, index) => (
                   <ContainerTypesItem key={index}>
                     <span>
-                      {type.type.name.charAt(0).toUpperCase() +
-                        type.type.name.slice(1)}
+                      {UpperCase(type.type.name)}
                     </span>
                   </ContainerTypesItem>
                 ))}
@@ -53,13 +62,12 @@ export const ModalWindow = ({ sprites,types,name,base_experience,abilities,stats
             <ModalInfo>
               <ModalInfoHeader>
                 <HeaderTitle>
-                  {name.charAt(0).toUpperCase() +
-                    name.slice(1)}
+                  {UpperCase(name)}
                 </HeaderTitle>
                 <HeaderGeneration>
                   <span style={{ alignSelf: "end" }}>Generation 1</span>
                   <HeaderExperience>
-                    <Exp/>
+                    <Exp />
                     <span>{base_experience}</span>
                   </HeaderExperience>
                 </HeaderGeneration>
@@ -69,8 +77,7 @@ export const ModalWindow = ({ sprites,types,name,base_experience,abilities,stats
                 <AbilitiesContainer>
                   {abilities.map((ability, index) => (
                     <AbilitiesItem key={index}>
-                      {ability.ability.name.charAt(0).toUpperCase() +
-                        ability.ability.name.slice(1)}
+                      {UpperCase(ability.ability.name)}
                     </AbilitiesItem>
                   ))}
                 </AbilitiesContainer>
@@ -84,14 +91,11 @@ export const ModalWindow = ({ sprites,types,name,base_experience,abilities,stats
                 <ExperienceContainer>
                   <span>Experience</span>
                   {base_experience}
-                  <ExperienceLoader></ExperienceLoader>
                 </ExperienceContainer>
               </HealthExpContainer>
             </ModalInfo>
           </ModalContentActive>
         </ModalActive>
-      ) : (
-        <></>
       )}
     </>
   );

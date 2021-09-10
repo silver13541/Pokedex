@@ -3,7 +3,7 @@ import { Footer } from "../UI/components/Footer/footer";
 import { Pagination } from "../UI/components/Pagination/pagination";
 import { PokedexFilters } from "../UI/components/PokedexFilters/pokedexFilters";
 import { Pokemons } from "../UI/components/Pokemons/pokemons";
-import { MyContext } from "../context/PokemonContext";
+import { PokemonContext } from "../context/PokemonContext";
 import {
   PokedexContainer,
   PokedexGrid,
@@ -15,28 +15,28 @@ import { SelectedContext } from "../context/SelectedPokemon";
 
 const Pokedex = () => {
   const [pokemonsPerPage] = useState<number>(9);
-  const context = useContext(MyContext);
+  const {allPokemons, currentPage} = useContext(PokemonContext);
   const [value, setValue] = useState<string>("");
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [currentPokem, setCurrentPokemons] = useState<CreatePokemonInterface[]>(
-    context.allPokemons
+    allPokemons
   );
 
-  const lastPokemonIndex = context.currentPage * pokemonsPerPage;
+  const lastPokemonIndex = currentPage * pokemonsPerPage;
   const firstPokemonIndex = lastPokemonIndex - pokemonsPerPage;
   const currentPokemons = currentPokem.slice(
     firstPokemonIndex,
     lastPokemonIndex
   );
 
-  const allPokemons = context.allPokemons.slice(
+  const sliceAllPokemons = allPokemons.slice(
     firstPokemonIndex,
     lastPokemonIndex
   );
 
   useEffect(() => {
     setCurrentPokemons(
-      context.allPokemons.filter(
+      allPokemons.filter(
         (pokemon) =>
           pokemon.types
             .map((type) => type.type.name)
@@ -52,7 +52,7 @@ const Pokedex = () => {
 
   useEffect(() => {
     setCurrentPokemons(
-      context.allPokemons.filter((pokemon) => pokemon.name.startsWith(value))
+      allPokemons.filter((pokemon) => pokemon.name.startsWith(value))
     );
   }, [value]);
 
@@ -77,11 +77,11 @@ const Pokedex = () => {
         {selectedTypes.length === 0 && value.length === 0 ? (
           <>
             <PokedexGrid>
-              <Pokemons currentPokemons={allPokemons} />
+              <Pokemons currentPokemons={sliceAllPokemons} />
             </PokedexGrid>
             <Pagination
               pokemonsPerPage={pokemonsPerPage}
-              totalPokemons={context.allPokemons.length}
+              totalPokemons={allPokemons.length}
             />
           </>
         ) : (

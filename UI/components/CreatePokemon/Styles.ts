@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CreatePokemonContainer = styled.div`
+export const PokemonContainer = styled.div`
   background: #f6f7f9;
   border-radius: 8px;
   display: flex;
@@ -10,14 +10,14 @@ export const CreatePokemonContainer = styled.div`
   filter: drop-shadow(4px 4px 4px rgba(33, 33, 33, 0.1));
 `;
 
-export const CreatePokemonInfo = styled.div`
+export const PokemonInfo = styled.div`
   width: 40%;
   padding-left: 8%;
   display: flex;
   flex-direction: column;
 `;
 
-export const CreatePokemonImage = styled.div`
+export const PokemonImage = styled.div`
   width: 60%;
   align-items: center;
   justify-content: center;
@@ -29,7 +29,7 @@ export const CreatePokemonImage = styled.div`
   }
 `;
 
-export const CreatePokemonTitle = styled.h3`
+export const PokemonTitle = styled.h3`
   font-family: Karla;
   font-style: normal;
   margin: 5% 0 17% 0;
@@ -37,12 +37,12 @@ export const CreatePokemonTitle = styled.h3`
   font-size: 18px;
   line-height: 21px;
 `;
-export const CreatePokemonStats = styled.div`
+export const PokemonStats = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
-export const CreatePokemonAttack = styled.div`
+export const PokemonAttack = styled.div`
   position: relative;
   text-align: center;
   span {
@@ -67,7 +67,7 @@ export const CreatePokemonAttack = styled.div`
   }
 `;
 
-export const CreatePokemonDefense = styled.div`
+export const PokemonDefense = styled.div`
   position: relative;
   text-align: center;
   span {
@@ -92,7 +92,7 @@ export const CreatePokemonDefense = styled.div`
   }
 `;
 
-export const CreatePokemonTypes = styled.div`
+export const PokemonTypes = styled.div`
   display: flex;
   font-family: Roboto;
   font-style: normal;

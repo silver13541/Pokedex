@@ -12,7 +12,7 @@ type MyContext = {
     setModalActive: React.Dispatch<SetStateAction<boolean>>;
 }
 
-export const MyContext = createContext<MyContext>({
+export const PokemonContext = createContext<MyContext>({
     allPokemons: [],
     currentPage: 1,
     modalActive: false,

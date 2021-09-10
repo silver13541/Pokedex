@@ -2,7 +2,7 @@ import "../UI/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Layout } from "../UI/components/layout";
 import React, { useEffect, useState } from "react";
-import { MyContext } from "../context/PokemonContext";
+import { PokemonContext } from "../context/PokemonContext";
 import {
   CreatePokemonInterface,
   InitialPokemonModal,
@@ -54,7 +54,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         rel="stylesheet"
       ></link>
       <Layout>
-        <MyContext.Provider
+        <PokemonContext.Provider
           value={{
             allPokemons,
             setAllPokemons,
@@ -75,7 +75,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             abilities={pokemonModal.abilities}
             stats={pokemonModal.stats}
           />
-        </MyContext.Provider>
+        </PokemonContext.Provider>
       </Layout>
     </>
   );

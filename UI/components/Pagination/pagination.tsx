@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
-import Image from "next/image";
 import { PokedexPages, PokedexPagesContainer } from "../PokedexFilters/Styles";
-import { MyContext } from "../../../context/PokemonContext";
+import { PokemonContext } from "../../../context/PokemonContext";
 import { IPagination } from "../../../interfaces/Pagination";
-import { EllipsePage } from "../../images/EllipsePage";
+import { EllipsePage }  from "../../images/EllipsePage";
 
 export const Pagination = ({ pokemonsPerPage, totalPokemons }: IPagination) => {
-  const context = useContext(MyContext);
+  const {setCurrentPage} = useContext(PokemonContext);
 
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalPokemons / pokemonsPerPage); i++) {
@@ -17,7 +16,7 @@ export const Pagination = ({ pokemonsPerPage, totalPokemons }: IPagination) => {
     <PokedexPagesContainer>
       <PokedexPages>
         {pageNumbers.map((number, index) => (
-          <div key={index} onClick={() => context.setCurrentPage(number)}>
+          <div key={index} onClick={() => setCurrentPage(number)}>
             <EllipsePage />
           </div>
         ))}

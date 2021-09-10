@@ -1,57 +1,61 @@
 import React, { useContext } from "react";
 import {
-  CreatePokemonAttack,
-  CreatePokemonContainer,
-  CreatePokemonDefense,
-  CreatePokemonImage,
-  CreatePokemonInfo,
-  CreatePokemonStats,
-  CreatePokemonTitle,
-  CreatePokemonTypes,
+  PokemonAttack,
+  PokemonContainer,
+  PokemonDefense,
+  PokemonImage,
+  PokemonInfo,
+  PokemonStats,
+  PokemonTitle,
+  PokemonTypes,
   TypesItem,
 } from "./Styles";
 import Image from "next/image";
-import {CreatePokemonInterface} from "../../../interfaces/Pokemon";
-import { MyContext } from "../../../context/PokemonContext";
+import { CreatePokemonInterface, PokemonColors } from "../../../interfaces/Pokemon";
+import { PokemonContext } from "../../../context/PokemonContext";
 import { Ellipse } from "../../images/Ellipse";
 
-export const CreatePokemon = ({ name, stats, types, sprites, base_experience, abilities }: CreatePokemonInterface)  => {
-  const context = useContext(MyContext);
-  
-  let color = "";
-  switch (types[0].type.name) {
-    case "grass":
-      color = "#64D368";
-      break;
-    case "fire":
-      color = "#B33327";
-      break;
-    case "water":
-      color = "#5BC7FA";
-      break;
-    case "poison":
-      color = "#9023a1";
-      break;
-    case "electric":
-      color = "#eaff00";
-      break;
-    case "bug":
-      color = "#52ff03";
-      break;
-    case "ground":
-      color = "#f0ad05";
-      break;
-    case "normal":
-      color = "#b7b8b0";
-      break;
-    default:
-      color = "b7b8b0";
-  }
+export const CreatePokemon = ({
+  name,
+  stats,
+  types,
+  sprites,
+  base_experience,
+  abilities,
+}: CreatePokemonInterface) => {
+  const { setModalActive, setPokemonModal } = useContext(PokemonContext);
+
+  const Color: PokemonColors = {
+    grass: "#64D368",
+    fire: "#B33327",
+    water: "#5BC7FA",
+    poison: "#9023a1",
+    electric: "#eaff00",
+    bug: "#52ff03",
+    ground: "#f0ad05",
+    normal: "#b7b8b0",
+    fighting: '#e5daf7',
+    psychic: '#fc3ac5',
+    flying: '#3a41fc',
+    rock: '#a0a1b0',
+    steel: '#e1e2f2',
+    fairy: '#ffbae8',
+  };
 
   return (
-    <CreatePokemonContainer onClick={() => {context.setModalActive(true)
-    context.setPokemonModal({ name, stats, types, sprites, base_experience, abilities })}
-    }>
+    <PokemonContainer
+      onClick={() => {
+        setModalActive(true);
+        setPokemonModal({
+          name,
+          stats,
+          types,
+          sprites,
+          base_experience,
+          abilities,
+        });
+      }}
+    >
       <link
         href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap"
         rel="stylesheet"
@@ -60,88 +64,33 @@ export const CreatePokemon = ({ name, stats, types, sprites, base_experience, ab
         href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
         rel="stylesheet"
       ></link>
-      <CreatePokemonInfo>
-        <CreatePokemonTitle>
+      <PokemonInfo>
+        <PokemonTitle>
           {name.charAt(0).toUpperCase() + name.slice(1)}
-        </CreatePokemonTitle>
-        <CreatePokemonStats>
-          <CreatePokemonAttack>
-            <Ellipse/>
+        </PokemonTitle>
+        <PokemonStats>
+          <PokemonAttack>
+            <Ellipse />
             <span>{stats[1].base_stat}</span>
             <p>Attack</p>
-          </CreatePokemonAttack>
-          <CreatePokemonDefense>
-          <Ellipse/>
+          </PokemonAttack>
+          <PokemonDefense>
+            <Ellipse />
             <span>{stats[2].base_stat}</span>
             <p>Defense</p>
-          </CreatePokemonDefense>
-        </CreatePokemonStats>
-        <CreatePokemonTypes>
-          {types.map((type) => {
-            switch (type.type.name) {
-              case "grass":
-                return (
-                  <TypesItem style={{ backgroundColor: "#64D368" }}>
-                    {type.type.name.charAt(0).toUpperCase() +
-                      type.type.name.slice(1)}
-                  </TypesItem>
-                );
-              case "fire":
-                return (
-                  <TypesItem style={{ backgroundColor: "#B33327" }}>
-                    {type.type.name.charAt(0).toUpperCase() +
-                      type.type.name.slice(1)}
-                  </TypesItem>
-                );
-              case "water":
-                return (
-                  <TypesItem style={{ backgroundColor: "#5BC7FA" }}>
-                    {type.type.name.charAt(0).toUpperCase() +
-                      type.type.name.slice(1)}
-                  </TypesItem>
-                );
-              case "poison":
-                return (
-                  <TypesItem style={{ backgroundColor: "#9023a1" }}>
-                    {type.type.name.charAt(0).toUpperCase() +
-                      type.type.name.slice(1)}
-                  </TypesItem>
-                );
-              case "bug":
-                return (
-                  <TypesItem style={{ backgroundColor: "#52ff03" }}>
-                    {type.type.name.charAt(0).toUpperCase() +
-                      type.type.name.slice(1)}
-                  </TypesItem>
-                );
-              case "electric":
-                return (
-                  <TypesItem style={{ backgroundColor: "#eaff00" }}>
-                    {type.type.name.charAt(0).toUpperCase() +
-                      type.type.name.slice(1)}
-                  </TypesItem>
-                );
-              case "ground":
-                return (
-                  <TypesItem style={{ backgroundColor: "#f0ad05" }}>
-                    {type.type.name.charAt(0).toUpperCase() +
-                      type.type.name.slice(1)}
-                  </TypesItem>
-                );
-              default:
-                return (
-                  <TypesItem style={{ backgroundColor: "#b7b8b0" }}>
-                    {type.type.name.charAt(0).toUpperCase() +
-                      type.type.name.slice(1)}
-                  </TypesItem>
-                );
-            }
-          })}
-        </CreatePokemonTypes>
-      </CreatePokemonInfo>
-      <CreatePokemonImage style={{ backgroundColor: color }}>
+          </PokemonDefense>
+        </PokemonStats>
+        <PokemonTypes>
+          {types.map((type) => (
+            <TypesItem style={{ backgroundColor: `${Color[type.type.name]}` }}>
+              {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
+            </TypesItem>
+          ))}
+        </PokemonTypes>
+      </PokemonInfo>
+      <PokemonImage style={{ backgroundColor: `${Color[types[0].type.name]}` }}>
         <img src={sprites.other.dream_world.front_default} alt={name} />
-      </CreatePokemonImage>
-    </CreatePokemonContainer>
+      </PokemonImage>
+    </PokemonContainer>
   );
 };

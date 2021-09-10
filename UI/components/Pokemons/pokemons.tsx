@@ -4,22 +4,22 @@ import { CurrentPokemonsInterface } from "../../../interfaces/Pokemon";
 import { CreatePokemon } from "../CreatePokemon/createPokemon";
 
 export const Pokemons = ({ currentPokemons }: CurrentPokemonsInterface) => {
-  const context = useContext(SelectedContext);
+  const {selectedTypes} = useContext(SelectedContext);
   
   return (
     <>
-      {context.selectedTypes.length !== 0
+      {selectedTypes.length !== 0
         ? currentPokemons
             .filter(
               (pokemon) =>
                 pokemon.types
                   .map((type) => type.type.name)
                   .sort()
-                  .includes(context.selectedTypes.sort().join()) ||
+                  .includes(selectedTypes.sort().join()) ||
                 pokemon.types
                   .map((type) => type.type.name)
                   .sort()
-                  .join() === context.selectedTypes.sort().join()
+                  .join() === selectedTypes.sort().join()
             )
             .map((pokemon) => (
               <CreatePokemon

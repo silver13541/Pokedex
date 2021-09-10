@@ -39,3 +39,7 @@ export const InitialPokemonModal = {
   base_experience: 0,
   abilities: [],
 };
+
+export interface PokemonColors {
+  [key: string]: string
+}
