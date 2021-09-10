@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { PokemonContext } from "../../../context/PokemonContext";
+import React from "react";
+import { usePokemonContext } from "../../../context/PokemonContext";
 import { CreatePokemonInterface } from "../../../interfaces/Pokemon";
 import {
   AbilitiesContainer,
@@ -22,15 +22,8 @@ import {
 } from "./Styles";
 import { Exp } from "../../images/Exp";
 
-export const ModalWindow = ({
-  sprites,
-  types,
-  name,
-  base_experience,
-  abilities,
-  stats,
-}: CreatePokemonInterface) => {
-  const { modalActive, setModalActive } = useContext(PokemonContext);
+export const ModalWindow = () => {
+  const { pokemonModal,modalActive, setModalActive } = usePokemonContext();
 
   const formatTitle = (string: string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -47,9 +40,9 @@ export const ModalWindow = ({
         >
           <ModalContentActive onClick={(e) => e.stopPropagation()}>
             <ModalContainerImage>
-              <img src={sprites.other.dream_world.front_default} />
+              <img src={pokemonModal.sprites.other.dream_world.front_default} />
               <ContainerTypes>
-                {types.map((type, index) => (
+                {pokemonModal.types.map((type, index) => (
                   <ContainerTypesItem key={index}>
                     <span>{formatTitle(type.type.name)}</span>
                   </ContainerTypesItem>
@@ -58,19 +51,19 @@ export const ModalWindow = ({
             </ModalContainerImage>
             <ModalInfo>
               <ModalInfoHeader>
-                <HeaderTitle>{formatTitle(name)}</HeaderTitle>
+                <HeaderTitle>{formatTitle(pokemonModal.name)}</HeaderTitle>
                 <HeaderGeneration>
                   <span style={{ alignSelf: "end" }}>Generation 1</span>
                   <HeaderExperience>
                     <Exp />
-                    <span>{base_experience}</span>
+                    <span>{pokemonModal.base_experience}</span>
                   </HeaderExperience>
                 </HeaderGeneration>
               </ModalInfoHeader>
               <InfoAbilities>
                 <span>Abilities</span>
                 <AbilitiesContainer>
-                  {abilities.map((ability, index) => (
+                  {pokemonModal.abilities.map((ability, index) => (
                     <AbilitiesItem key={index}>
                       {formatTitle(ability.ability.name)}
                     </AbilitiesItem>
@@ -80,12 +73,12 @@ export const ModalWindow = ({
               <HealthExpContainer>
                 <HealtContainer>
                   <span>Healthy Points</span>
-                  {stats[0].base_stat}
+                  {pokemonModal.stats[0].base_stat}
                   <HealthLoader></HealthLoader>
                 </HealtContainer>
                 <ExperienceContainer>
                   <span>Experience</span>
-                  {base_experience}
+                  {pokemonModal.base_experience}
                 </ExperienceContainer>
               </HealthExpContainer>
             </ModalInfo>

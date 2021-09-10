@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FilterButton,
   PokedexFilter,
@@ -6,14 +6,14 @@ import {
   TypeContainer,
   TypeContainerRow,
 } from "./Styles";
-import { SelectedContext } from "../../../context/SelectedPokemon";
+import { useSelectedContext } from "../../../context/SelectedPokemon";
 import { IPokemon } from "../../../interfaces/Pokemon";
 import { ArrowFilter } from "../../images/ArrowFilter";
 
 export const PokedexFilters = () => {
   const [isShown, setIsShown] = useState(false);
   const [allTypes, setAllTypes] = useState<IPokemon[]>([]);
-  const { selectedTypes, setSelectedTypes } = useContext(SelectedContext);
+  const { selectedTypes, setSelectedTypes } = useSelectedContext();
 
   const getAllTypes = async () => {
     const res = await fetch(`https://pokeapi.co/api/v2/type`);

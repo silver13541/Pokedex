@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   PokemonAttack,
   PokemonContainer,
@@ -10,8 +10,8 @@ import {
   PokemonTypes,
   TypesItem,
 } from "./Styles";
-import { Color, CreatePokemonInterface, PokemonColors } from "../../../interfaces/Pokemon";
-import { PokemonContext } from "../../../context/PokemonContext";
+import { Color, CreatePokemonInterface } from "../../../interfaces/Pokemon";
+import { usePokemonContext } from "../../../context/PokemonContext";
 import { Ellipse } from "../../images/Ellipse";
 
 export const CreatePokemon = ({
@@ -22,7 +22,7 @@ export const CreatePokemon = ({
   base_experience,
   abilities,
 }: CreatePokemonInterface) => {
-  const { setModalActive, setPokemonModal } = useContext(PokemonContext);
+  const { setModalActive, setPokemonModal } = usePokemonContext();
 
   return (
     <PokemonContainer

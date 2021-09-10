@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Footer } from "../UI/components/Footer/footer";
 import { Pagination } from "../UI/components/Pagination/pagination";
 import { PokedexFilters } from "../UI/components/PokedexFilters/pokedexFilters";
 import { Pokemons } from "../UI/components/Pokemons/pokemons";
-import { PokemonContext } from "../context/PokemonContext";
+import { usePokemonContext } from "../context/PokemonContext";
 import {
   PokedexContainer,
   PokedexGrid,
@@ -14,7 +14,7 @@ import { CreatePokemonInterface } from "../interfaces/Pokemon";
 import { SelectedContext } from "../context/SelectedPokemon";
 
 const Pokedex = () => {
-  const { allPokemons, currentPage } = useContext(PokemonContext);
+  const { allPokemons, currentPage } = usePokemonContext();
 
   const [pokemonsPerPage] = useState<number>(9);
   const [value, setValue] = useState<string>("");

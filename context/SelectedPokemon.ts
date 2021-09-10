@@ -1,4 +1,4 @@
-import React, { createContext, SetStateAction } from "react";
+import React, { createContext, SetStateAction, useContext } from "react";
 import { CreatePokemonInterface } from "../interfaces/Pokemon";
 
 type SelectedContext = {
@@ -8,9 +8,13 @@ type SelectedContext = {
     setCurrentPokemons: React.Dispatch<SetStateAction<CreatePokemonInterface[]>>
 }
 
-export const SelectedContext = createContext<SelectedContext>({
+const initialState : SelectedContext = {
     selectedTypes: [],
     currentPokemons: [],
     setSelectedTypes: (selectedTypes) => (selectedTypes),
     setCurrentPokemons: (setCurrentPokemons) => (setCurrentPokemons),
-})
+}
+
+export const SelectedContext = createContext(initialState)
+
+export const useSelectedContext =(): SelectedContext => useContext(SelectedContext)
