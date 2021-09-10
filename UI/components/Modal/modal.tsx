@@ -7,7 +7,6 @@ import {
   ContainerTypes,
   ContainerTypesItem,
   ExperienceContainer,
-  ExperienceLoader,
   HeaderExperience,
   HeaderGeneration,
   HeaderTitle,
@@ -31,9 +30,9 @@ export const ModalWindow = ({
   abilities,
   stats,
 }: CreatePokemonInterface) => {
-  const {modalActive,setModalActive} = useContext(PokemonContext);
+  const { modalActive, setModalActive } = useContext(PokemonContext);
 
-  const UpperCase = (string: string) => {
+  const formatTitle = (string: string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
@@ -52,18 +51,14 @@ export const ModalWindow = ({
               <ContainerTypes>
                 {types.map((type, index) => (
                   <ContainerTypesItem key={index}>
-                    <span>
-                      {UpperCase(type.type.name)}
-                    </span>
+                    <span>{formatTitle(type.type.name)}</span>
                   </ContainerTypesItem>
                 ))}
               </ContainerTypes>
             </ModalContainerImage>
             <ModalInfo>
               <ModalInfoHeader>
-                <HeaderTitle>
-                  {UpperCase(name)}
-                </HeaderTitle>
+                <HeaderTitle>{formatTitle(name)}</HeaderTitle>
                 <HeaderGeneration>
                   <span style={{ alignSelf: "end" }}>Generation 1</span>
                   <HeaderExperience>
@@ -77,7 +72,7 @@ export const ModalWindow = ({
                 <AbilitiesContainer>
                   {abilities.map((ability, index) => (
                     <AbilitiesItem key={index}>
-                      {UpperCase(ability.ability.name)}
+                      {formatTitle(ability.ability.name)}
                     </AbilitiesItem>
                   ))}
                 </AbilitiesContainer>

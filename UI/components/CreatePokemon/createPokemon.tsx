@@ -10,8 +10,7 @@ import {
   PokemonTypes,
   TypesItem,
 } from "./Styles";
-import Image from "next/image";
-import { CreatePokemonInterface, PokemonColors } from "../../../interfaces/Pokemon";
+import { Color, CreatePokemonInterface, PokemonColors } from "../../../interfaces/Pokemon";
 import { PokemonContext } from "../../../context/PokemonContext";
 import { Ellipse } from "../../images/Ellipse";
 
@@ -24,23 +23,6 @@ export const CreatePokemon = ({
   abilities,
 }: CreatePokemonInterface) => {
   const { setModalActive, setPokemonModal } = useContext(PokemonContext);
-
-  const Color: PokemonColors = {
-    grass: "#64D368",
-    fire: "#B33327",
-    water: "#5BC7FA",
-    poison: "#9023a1",
-    electric: "#eaff00",
-    bug: "#52ff03",
-    ground: "#f0ad05",
-    normal: "#b7b8b0",
-    fighting: '#e5daf7',
-    psychic: '#fc3ac5',
-    flying: '#3a41fc',
-    rock: '#a0a1b0',
-    steel: '#e1e2f2',
-    fairy: '#ffbae8',
-  };
 
   return (
     <PokemonContainer
