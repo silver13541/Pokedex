@@ -14,7 +14,7 @@ import { Color, CreatePokemonInterface } from "../../../interfaces/Pokemon";
 import { usePokemonContext } from "../../../context/PokemonContext";
 import { Ellipse } from "../../images/Ellipse";
 
-export const CreatePokemon = ({
+export const PokemonCard = ({
   name,
   stats,
   types,

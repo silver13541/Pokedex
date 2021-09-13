@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { usePokemonContext } from "../../../context/PokemonContext";
 import { CurrentPokemonsInterface } from "../../../interfaces/Pokemon";
-import { CreatePokemon } from "../CreatePokemon/createPokemon";
+import { PokemonCard } from "../PokemonCard/pokemonCard";
 
 export const Pokemons = ({ currentPokemons }: CurrentPokemonsInterface) => {
   const { selectedTypes } = usePokemonContext();
@@ -28,7 +28,7 @@ export const Pokemons = ({ currentPokemons }: CurrentPokemonsInterface) => {
   return (
     <>
       {(filterPokemons ?? currentPokemons).map((pokemon) => (
-        <CreatePokemon
+        <PokemonCard
           name={pokemon.name}
           stats={pokemon.stats}
           types={pokemon.types}
