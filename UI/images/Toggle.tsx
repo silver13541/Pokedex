@@ -1,4 +1,8 @@
-<svg width="83" height="46" viewBox="0 0 83 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+import React from 'react'
+
+export const Toggle = () => {
+    return (
+        <svg width="83" height="46" viewBox="0 0 83 46" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g filter="url(#filter0_di)">
 <rect x="1.46484" width="80" height="44" rx="22" fill="black" fill-opacity="0.1"/>
 <g filter="url(#filter1_d)">
@@ -41,3 +45,5 @@
 </filter>
 </defs>
 </svg>
+    )
+}

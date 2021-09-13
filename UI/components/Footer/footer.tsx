@@ -1,6 +1,6 @@
 import { useRouter } from 'next/dist/client/router';
 import React from 'react'
-import { FooterContainer, FooterContent, FooterHeart, FooterLink } from '../styledComponents/Footer'
+import { FooterContainer, FooterContent, FooterHeart, FooterLink } from './Styles'
 
 export const Footer = () => {
     const router = useRouter();

@@ -1,106 +1,88 @@
-import Head from "next/head";
 import React, { useEffect, useState } from "react";
-import { CreatePokemon } from "../components/createPokemon";
-import { Footer } from "../components/footer";
+import { Footer } from "../UI/components/Footer/footer";
+import { Pagination } from "../UI/components/Pagination/pagination";
+import { PokedexFilters } from "../UI/components/PokedexFilters/pokedexFilters";
+import { Pokemons } from "../UI/components/Pokemons/pokemons";
+import { usePokemonContext } from "../context/PokemonContext";
 import {
   PokedexContainer,
-  PokedexFilter,
-  PokedexFilterContainer,
-  PokedexFilters,
   PokedexGrid,
   PokedexInput,
-  PokedexPages,
-  PokedexPagesContainer,
-  PokedexSelect,
   PokedexTitle,
-} from "../styledComponents/Pokedex";
-import pageButton from "../images/EllipsePage.svg";
-import Image from "next/image";
+} from "../UI/components/PokedexFilters/Styles";
 
 const Pokedex = () => {
-  const [allPokemons, setAllPokemons] = useState([]);
-  const [loadMore, setLoadMore] = useState(
-    "https://pokeapi.co/api/v2/pokemon?limit=45"
+  const {
+    selectedTypes,
+    currentPokem,
+    allPokemons,
+    currentPage,
+    setCurrentPokemons,
+  } = usePokemonContext();
+  const [value, setValue] = useState<string>("");
+  const [pokemonsPerPage] = useState<number>(9);
+
+  const lastPokemonIndex = currentPage * pokemonsPerPage;
+  const firstPokemonIndex = lastPokemonIndex - pokemonsPerPage;
+
+  const currentPokemons = currentPokem.slice(
+    firstPokemonIndex,
+    lastPokemonIndex
   );
-  console.log(allPokemons);
-
-  const getAllPokemons = async () => {
-    const res = await fetch(loadMore);
-    const data = await res.json();
-
-    setLoadMore(data.next);
-
-    function createPokemonObject(results) {
-      results.forEach(async (pokemon) => {
-        const res = await fetch(
-          `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
-        );
-        const data = await res.json();
-        setAllPokemons((currentList) => [...currentList, data]);
-      });
-    }
-    createPokemonObject(data.results);
-  };
+  const sliceAllPokemons = allPokemons.slice(
+    firstPokemonIndex,
+    lastPokemonIndex
+  );
 
   useEffect(() => {
-    getAllPokemons();
-  }, []);
+    setCurrentPokemons(
+      allPokemons.filter(
+        (pokemon) =>
+          pokemon.types
+            .map((type) => type.type.name)
+            .sort()
+            .includes(selectedTypes.sort().join()) ||
+          pokemon.types
+            .map((type) => type.type.name)
+            .sort()
+            .join() === selectedTypes.sort().join()
+      )
+    );
+  }, [selectedTypes]);
+
+  useEffect(() => {
+    setCurrentPokemons(
+      allPokemons.filter((pokemon) => pokemon.name.startsWith(value))
+    );
+  }, [value]);
+
   return (
     <PokedexContainer>
-      <Head>
-        <title>Pokedex</title>
-      </Head>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap"
-        rel="stylesheet"
-      ></link>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
-        rel="stylesheet"
-      ></link>
       <PokedexTitle>
         800 <b>Pokemons</b> for you to choose your favorite
       </PokedexTitle>
-      <PokedexInput placeholder="Encuentra tu pokémon..." />
-      <PokedexFilters>
-        <PokedexFilter>
-          <PokedexSelect>
-            <option>Tipo</option>
-          </PokedexSelect>
-          <PokedexFilterContainer></PokedexFilterContainer>
-        </PokedexFilter>
-        <PokedexFilter>
-          <PokedexSelect>
-            <option>Ataque</option>
-          </PokedexSelect>
-          <PokedexFilterContainer></PokedexFilterContainer>
-        </PokedexFilter>
-        <PokedexFilter>
-          <PokedexSelect>
-            <option>Experiencia</option>
-          </PokedexSelect>
-          <PokedexFilterContainer></PokedexFilterContainer>
-        </PokedexFilter>
-      </PokedexFilters>
+      <PokedexInput
+        placeholder="Encuentra tu pokémon..."
+        onChange={(e) => setValue(e.target.value)}
+      />
+      <PokedexFilters />
       <PokedexGrid>
-        {allPokemons.map((pokemon, index) => (
-          <CreatePokemon
-            name={pokemon.name}
-            attack={pokemon.stats[1].base_stat}
-            defense={pokemon.stats[2].base_stat}
-            types={pokemon.types}
-            image={pokemon.sprites.other.dream_world.front_default}
-            key={index}
-          />
-        ))}
+        <Pokemons
+          currentPokemons={
+            selectedTypes.length === 0 && value.length === 0
+              ? sliceAllPokemons
+              : currentPokemons
+          }
+        />
       </PokedexGrid>
-      <PokedexPagesContainer>
-        <PokedexPages>
-          <Image src={pageButton} />
-          <Image src={pageButton} />
-          <Image src={pageButton} />
-        </PokedexPages>
-      </PokedexPagesContainer>
+      <Pagination
+        pokemonsPerPage={pokemonsPerPage}
+        totalPokemons={
+          selectedTypes.length === 0 && value.length === 0
+            ? allPokemons.length
+            : currentPokem.length
+        }
+      />
       <Footer />
     </PokedexContainer>
   );

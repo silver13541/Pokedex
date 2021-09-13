@@ -8,9 +8,9 @@ import {
   TextButton,
   TextParagraph,
   TextTittle,
-} from "../styledComponents/Home";
-import pokemon from "../images/pokemonHome.png";
-import { Footer } from "../components/footer";
+} from "../UI/styles/stylesPage/StylesHome";
+import pokemon from "../UI/images/pokemonHome.png";
+import { Footer } from "../UI/components/Footer/footer";
 import { useRouter } from "next/dist/client/router";
 
 const Home = () => {
@@ -19,10 +19,6 @@ const Home = () => {
     <>
       <HomeContainer>
         <HomeContent>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap"
-            rel="stylesheet"
-          ></link>
           <HomeTextContainer>
             <TextTittle>
               <b>Find</b> all your favorite <b>Pokemon</b>
