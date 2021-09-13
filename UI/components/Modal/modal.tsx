@@ -1,6 +1,6 @@
 import React from "react";
 import { usePokemonContext } from "../../../context/PokemonContext";
-import { ColorModalImage, ColorModalInfo } from "../../../interfaces/Pokemon";
+import { Color, ColorModalInfo } from "../../../interfaces/Pokemon";
 import {
   AbilitiesContainer,
   AbilitiesItem,
@@ -32,7 +32,6 @@ export const ModalWindow = () => {
   const formatTitle = (string: string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
-  console.log(pokemonModal.stats);
 
   return (
     <>
@@ -47,7 +46,7 @@ export const ModalWindow = () => {
             <ModalContainerImage
               style={{
                 backgroundColor: `${
-                  ColorModalImage[pokemonModal.types[0].type.name]
+                  Color[pokemonModal.types[0].type.name]
                 }`,
               }}
             >

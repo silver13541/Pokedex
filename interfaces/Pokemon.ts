@@ -58,23 +58,6 @@ export const Color: PokemonColors = {
   fairy: '#ffbae8',
 };
 
-export const ColorModalImage: PokemonColors = {
-  grass: "#64D368",
-  fire: "#B33327",
-  water: "#5BC7FA",
-  poison: "#9023a1",
-  electric: "#eaff00",
-  bug: "#52ff03",
-  ground: "#f0ad05",
-  normal: "#b7b8b0",
-  fighting: '#e5daf7',
-  psychic: '#fc3ac5',
-  flying: '#3a41fc',
-  rock: '#a0a1b0',
-  steel: '#e1e2f2',
-  fairy: '#ffbae8',
-};
-
 export const ColorModalInfo: PokemonColors = {
   grass: "#21bf60",
   fire: "#e30513",
