@@ -40,7 +40,7 @@ export const ModalContent = styled.div`
 
 export const ModalContentActive = styled.div`
   transform: scale(1);
-  border-radius: 12px;
+  border-radius: 16px;
   background-color: white;
   height: 44vh;
   display: flex;
@@ -96,6 +96,7 @@ export const ModalInfoHeader = styled.div`
 `;
 
 export const HeaderTitle = styled.div`
+  color: #fdfdfd;
   font-weight: bold;
   font-size: 36px;
   line-height: 42px;
@@ -108,6 +109,7 @@ export const HeaderGeneration = styled.div`
   font-weight: normal;
   font-size: 24px;
   line-height: 30px;
+  color: #fdfdfd;
 `;
 
 export const HeaderExperience = styled.div`
@@ -123,6 +125,7 @@ export const HeaderExperience = styled.div`
     font-size: 16px;
     line-height: 19px;
     position: absolute;
+    color: #000000;
   }
 `;
 
@@ -132,7 +135,8 @@ export const InfoAbilities = styled.div`
   box-shadow: 4px 4px 4px rgba(33, 33, 33, 0.1);
   border-radius: 8px;
   width: 67%;
-  padding: 12px 80px 10px 28px;
+  padding: 12px 50px 10px 28px;
+  background: #fdfdfd;
 `;
 
 export const AbilitiesContainer = styled.div`
@@ -149,6 +153,7 @@ export const HealthExpContainer = styled.div`
   margin-top: 21px;
   padding: 18.5px 19px 8px 19.5px;
   display: flex;
+  background: #fdfdfd;
 `;
 
 export const HealtContainer = styled.div`
@@ -158,9 +163,7 @@ export const HealtContainer = styled.div`
   flex-direction: column;
 `;
 
-export const HealthLoader = styled.div`
-
-`
+export const HealthLoader = styled.div``;
 
 export const ExperienceContainer = styled.div`
   width: 50%;
@@ -169,6 +172,43 @@ export const ExperienceContainer = styled.div`
   flex-direction: column;
 `;
 
-export const ExperienceLoader = styled.div`
+export const ExperienceLoader = styled.div``;
 
-`
+export const StatsContainer = styled.div`
+  display: flex;
+  height: 19.5%;
+  margin-top: 19.5%;
+  justify-content: space-between;
+`;
+
+export const StatsItemContainer = styled.div`
+  width: 20.7%;
+  display: flex;
+  justify-content: center;
+  background: #fdfdfd;
+  box-shadow: 4px 4px 24px rgba(1, 17, 38, 0.2);
+  border-radius: 8px;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5%;
+  span {
+    font-weight: normal;
+    font-size: 12px;
+    margin-top: 7%;
+  }
+`;
+
+export const ItemImageContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  svg {
+    position: absolute;
+  }
+  span {
+    position: absolute;
+    font-size: 16px;
+  }
+`;
