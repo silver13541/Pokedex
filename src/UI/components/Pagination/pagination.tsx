@@ -1,7 +1,7 @@
 import React from "react";
 import { PokedexPages, PokedexPagesContainer } from "../PokedexFilters/Styles";
-import { usePokemonContext } from "../../../context/PokemonContext";
-import { IPagination } from "../../../interfaces/Pagination";
+import { usePokemonContext } from "../../../../context/PokemonContext";
+import { IPagination } from "../../../../interfaces/Pagination";
 import { EllipsePage }  from "../../images/EllipsePage";
 
 export const Pagination = ({ pokemonsPerPage, totalPokemons }: IPagination) => {

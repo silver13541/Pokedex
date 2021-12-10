@@ -10,8 +10,8 @@ import {
   PokemonTypes,
   TypesItem,
 } from "./Styles";
-import { Color, CreatePokemonInterface } from "../../../interfaces/Pokemon";
-import { usePokemonContext } from "../../../context/PokemonContext";
+import { Color, CreatePokemonInterface } from "../../../../interfaces/Pokemon";
+import { usePokemonContext } from "../../../../context/PokemonContext";
 import { Ellipse } from "../../images/Ellipse";
 
 export const PokemonCard = ({

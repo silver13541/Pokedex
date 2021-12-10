@@ -26,6 +26,10 @@ type MyContext = {
   setCurrentPokemons: React.Dispatch<SetStateAction<CreatePokemonInterface[]>>;
   selectedTypes: string[];
   setSelectedTypes: React.Dispatch<SetStateAction<string[]>>;
+  modalRegistration: boolean;
+  setModalRegistration: React.Dispatch<SetStateAction<boolean>>;
+  auth: boolean;
+  setAuth: React.Dispatch<SetStateAction<boolean>>;
 };
 
 type Props = {
@@ -39,12 +43,16 @@ const initialState: MyContext = {
   pokemonModal: InitialPokemonModal,
   currentPokem: [],
   selectedTypes: [],
+  modalRegistration: false,
+  auth: false,
   setSelectedTypes: (selectedTypes) => selectedTypes,
   setPokemonModal: (setPokemonModal) => setPokemonModal,
   setAllPokemons: (allPokemons) => allPokemons,
   setCurrentPage: (setCurrentPage) => setCurrentPage,
   setModalActive: (setModalActive) => setModalActive,
   setCurrentPokemons: (setCurrentPokemons) => setCurrentPokemons,
+  setModalRegistration: (setModalRegistration) => setModalRegistration,
+  setAuth: (setAuth) => setAuth,
 };
 
 export const PokemonContext = createContext(initialState);
@@ -58,6 +66,8 @@ export const PokemonContextProvider = ({ children }: Props): ReactElement => {
   const [currentPokem, setCurrentPokemons] =
     useState<CreatePokemonInterface[]>(allPokemons);
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+  const [modalRegistration, setModalRegistration] = useState(false);
+  const [auth, setAuth] = useState(false);
 
   useEffect(() => {
     getAllPokemons();
@@ -92,6 +102,10 @@ export const PokemonContextProvider = ({ children }: Props): ReactElement => {
       setCurrentPokemons,
       selectedTypes,
       setSelectedTypes,
+      modalRegistration,
+      setModalRegistration,
+      auth,
+      setAuth,
     }),
     [
       allPokemons,
@@ -106,6 +120,10 @@ export const PokemonContextProvider = ({ children }: Props): ReactElement => {
       setCurrentPokemons,
       selectedTypes,
       setSelectedTypes,
+      modalRegistration,
+      setModalRegistration,
+      auth,
+      setAuth,
     ]
   );
 

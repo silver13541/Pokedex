@@ -6,9 +6,9 @@ import {
   TypeContainer,
   TypeContainerRow,
 } from "./Styles";
-import { IPokemon } from "../../../interfaces/Pokemon";
+import { IPokemon } from "../../../../interfaces/Pokemon";
 import { ArrowFilter } from "../../images/ArrowFilter";
-import { usePokemonContext } from "../../../context/PokemonContext";
+import { usePokemonContext } from "../../../../context/PokemonContext";
 
 export const PokedexFilters = () => {
   const [isShown, setIsShown] = useState(false);

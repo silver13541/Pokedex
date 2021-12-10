@@ -1,6 +1,6 @@
 import React from "react";
-import { usePokemonContext } from "../../../context/PokemonContext";
-import { Color, ColorModalInfo } from "../../../interfaces/Pokemon";
+import { usePokemonContext } from "../../../../context/PokemonContext";
+import { Color, ColorModalInfo } from "../../../../interfaces/Pokemon";
 import {
   AbilitiesContainer,
   AbilitiesItem,

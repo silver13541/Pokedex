@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Footer } from "../UI/components/Footer/footer";
-import { Pagination } from "../UI/components/Pagination/pagination";
-import { PokedexFilters } from "../UI/components/PokedexFilters/pokedexFilters";
-import { Pokemons } from "../UI/components/Pokemons/pokemons";
+import { Footer } from "../src/UI/components/Footer/footer";
+import { Pagination } from "../src/UI/components/Pagination/pagination";
+import { PokedexFilters } from "../src/UI/components/PokedexFilters/pokedexFilters";
+import { Pokemons } from "../src/UI/components/Pokemons/pokemons";
 import { usePokemonContext } from "../context/PokemonContext";
 import {
   PokedexContainer,
   PokedexGrid,
   PokedexInput,
   PokedexTitle,
-} from "../UI/components/PokedexFilters/Styles";
+} from "../src/UI/components/PokedexFilters/Styles";
 
 const Pokedex = () => {
   const {

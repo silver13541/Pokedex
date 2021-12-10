@@ -1,5 +1,5 @@
 import React from "react";
-import { Container404 } from "../UI/styles/stylesPage/Styles404";
+import { Container404 } from "../src/UI/styles/stylesPage/Styles404";
 
 const Custom404 = () => {
   return (

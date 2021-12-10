@@ -8,13 +8,15 @@ import {
   TextButton,
   TextParagraph,
   TextTittle,
-} from "../UI/styles/stylesPage/StylesHome";
-import pokemon from "../UI/images/pokemonHome.png";
-import { Footer } from "../UI/components/Footer/footer";
+} from "../src/UI/styles/stylesPage/StylesHome";
+import pokemon from "../src/UI/images/pokemonHome.png";
+import { Footer } from "../src/UI/components/Footer/footer";
 import { useRouter } from "next/dist/client/router";
+import { usePokemonContext } from "../context/PokemonContext";
 
 const Home = () => {
   const router = useRouter();
+  const { modalRegistration } = usePokemonContext();
   return (
     <>
       <HomeContainer>
@@ -27,9 +29,11 @@ const Home = () => {
               You can know the type of Pokemon, its strengths, disadvantages and
               abilities
             </TextParagraph>
-            <TextButton onClick={() => router.push('/pokedex')}>See pokemons</TextButton>
+            <TextButton onClick={() => router.push("/pokedex")}>
+              See pokemons
+            </TextButton>
           </HomeTextContainer>
-          <HomePicture>
+          <HomePicture style={{ zIndex: modalRegistration && -1 }}>
             <Image src={pokemon} alt="pokemon" />
           </HomePicture>
         </HomeContent>

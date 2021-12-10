@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
-import { usePokemonContext } from "../../../context/PokemonContext";
-import { CurrentPokemonsInterface } from "../../../interfaces/Pokemon";
+import { usePokemonContext } from "../../../../context/PokemonContext";
+import { CurrentPokemonsInterface } from "../../../../interfaces/Pokemon";
 import { PokemonCard } from "../PokemonCard/pokemonCard";
 
 export const Pokemons = ({ currentPokemons }: CurrentPokemonsInterface) => {
